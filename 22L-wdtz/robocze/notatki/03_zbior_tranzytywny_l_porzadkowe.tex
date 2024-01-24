@@ -1,0 +1,257 @@
+\documentclass{article}
+
+\usepackage{../../notatka}
+
+\begin{document}\ttfamily
+\section*{DOBRE PORZADKI, LICZBY PORZADKOWE}
+    \begin{center}
+        Suma przeliczalnie wielu przeliczalnych zbiorow jest przeliczalna:\smallskip\\
+        $\aleph_0\geq\bigcup\limits_{n\in\N}A_n,\quad\forall\;n\in\N\quad|A_n|\leq\aleph_0$
+    \end{center}
+    \dowod
+    Poniewaz $|A_n|\leq\aleph_0$ $n\in\N$, istnieje bijekcja
+    $$f_n:\N\to A_n.$$
+    Chcemy pokazac, ze istnieje rowniez bijekcja:
+    $$f:\N\times\N\to\bigcup\limits_{n\in\N}A_n$$
+    $$f(n, k)=f_n(k)\quad(\kawa)$$
+    Musimy skorzystac z aksjomatu wyboru, poniewaz nie wystarczy nam tylko jeden element z $(f_n)$ - potrzebujemy znac wlasnosci wszystkich elementow $(f_n)$ jednoczesnie. Rozpatrujemy wiec zbior funkcji:
+    $$F_n=\{\varphi\in S_n^\N\;:\;\varphi\texttt{ jest bijekcja}\}$$
+    dla $n\in\N$, {\color{emp}gdzie $S_n^\N$ to wszystkie funckje $g:\N\to\N$ \emph{lub z $\N$ do podzbioru $A_n$}}. Niech $F$ bedzie funkcja wyboru dla rodziny $\{F_n\;:\;n\in\N\}$, czyli kazdej rodzinie przypisuje element tej rodziny:
+    $$F(F_n)\in F_n.$$
+    Przepiszmy wiec $(\kawa)$ w sposob bardziej formalny:
+    $$f(n,k)=F(F_n)(k).$$
+    Poniewaz $F(F_n)$ jest bijekcja, to rowniez $f$ jest bijekcja.
+    \kondow
+    \begin{center}
+        {\large\color{def}LEMAT KURATOWSKIEGO-ZORNA:}\smallskip\\
+        Jesli $\langle X, \leq\rangle$ jest zbiorem czesciowo uporzadkowanym, w ktorym \color{acc}kazdy lancuch \\
+        jest ograniczony z gory\color{txt}, to w $X$ istnieje \color{emp}element maksymalny\color{txt}.
+    \end{center}\bigskip
+    \tw {dla dowolnych zbiorow $A, B$ zachodzi $|A|\leq|B|$ lub $|B|\leq|A|$}
+    \dowod
+    Musimy skonstruowac \emph{zbior czesciowo uporzadkowany $X$, do ktorego bedziemy mogli \color{acc}zastosowac LKZ}. Elementami tego zioru niech beda przyblizenia tego, co chcemy otrzymac:
+    $$X=\{f\;:\;\funk{f}\;\land\;\dom{f}\subseteq A\;\land\;\rng{f}\subseteq B\;\land\; \texttt{f jest 1-1}\}.$$
+    Bedziemy rozpatrywali $\langle X,\subseteq\rangle$. Chcemy zastosowac do niego LKZ, czyli musimy sprawdzic zalozenia.\smallskip\\
+    Niech
+    $$\mathcal{L}\subseteq X$$
+    bedzie lancuchem w $X$. {\color{acc}Chcemy pokazac, ze ma on ograniczenie gorne}. Niech
+    $$L=\bigcup\mathcal{L},$$
+    wtedy $L$ jest ograniczeniem gornym $\mathcal{L}$, bo zawiera wszystkie elementy tego lancucha.\medskip\\
+    Znalezlismy juz ograniczenie gorne lancucha $\mathcal{L}$, teraz musimy pokazac, ze $L$ jest elementem zbioru $X$ z zalozenia, czyli spelnia nastepujace warunki:\medskip\\
+
+    \indent {\color{emp}1. $L$ jest zbiorem par uporzadkowanych}. Stwierdzenie to wynika bezposrednio z faktu, ze $L$ jest suma lancucha.\medskip\\
+    \indent{\color{emp}2. $L$ jest funkcja}, gdyz elementami zbioru $X$ sa funkcje.\smallskip\\
+    Chcemy pokazac, ze
+        $$\forall\;x,y,z\quad \langle x,y\rangle \in L\;\land\;\langle x,z\rangle\in L\implies y=z,$$
+    czyli $L$ jest zbiorem takich par uporzadkowanych, ze jesli dwie pary maja ten sam poprzednik, to maja tez ten sam nastepnik (def. funkcji).\smallskip\\
+    Ustalmy dowolne $x,y,z$ takie, ze $\langle x,y\rangle\in L$ i $\langle x,z\rangle\in L$. Zatem istnieja $F,G\in\mathcal{L}$ takie, ze
+    $$\langle x,y\rangle\in F\;\land\; \langle x,z\rangle\in G.$$
+    Poniewaz $\mathcal{L}$ ma {\color{acc}ograniczenie gorne} (czyli jest zbior do ktorego naleza wszystkie pozostale) i jest {\color{acc}lancuchem}, wszystkie jego elementy mozemy porownac miedzy soba. Czyli, bez straty ogolnosci, mozemy zalozyc, ze $F\subseteq G$ i wowczas
+    $$\langle x,y\rangle\in G\texttt{ i }\langle x,z\rangle\in G\implies y=z$$
+    gdyz zbior $G$ jest funkcja ($\funk{G}$).\medskip\\
+    \indent {\color{emp}3. $\dom{ L}\subseteq A$}\medskip\\
+    \indent {\color{emp}4. $\rng{ L}\subseteq B$}\smallskip\\
+    \emph{zalozenie 3. i 4. wynikaja bezposrednio z definicji zbioru $X$ oraz $L$}
+    $$\dom{\bigcup\mathcal{L}}=\bigcup\limits_{F\in\mathcal{L}}\dom F$$
+    $$\rng{\bigcup\mathcal{L}}=\bigcup\limits_{F\in\mathcal{L}}\rng F$$
+    \indent{\color{emp}5. $L$ jest funkcja roznowartosciowa (iniekcja)}, czyli jesli $\langle x, y\rangle=\langle z, y\rangle$ to $x=z$.\smallskip\\
+    Ustalmy dowolne $x,y,z$ takie, ze $\langle x,y\rangle\in L$ i $\langle z,y\rangle\in L$. Zatem istnieja $F,G\in \mathcal{L}$ takie, ze
+    $$\langle x,y\rangle\in F\;\land\;\langle z,y\rangle\in G$$
+    Poniewaz $\mathcal{L}$ jest lancuchem, to mozemy zalozyc, ze $F\subseteq G$, a poniewaz $\mathcal{L}\subseteq X$ i $X$ zawiera jedynie iniekcje, to
+    $$\langle x,y\rangle\in G\;\land\;\langle z,y\rangle\in G\implies x = z.$$
+    Poniewaz pokazalismy, ze dowolny lancuch $X$ jest ograniczony z gory, to na mocy \color{acc}w $X$ istnieje element maksymalny $\varphi\in X$\color{txt}. Rozpatrzmy trzy mozliwosci:\medskip\\
+    \indent {\color{emp}1. $\dom \varphi=A$}. Wowczas z definicji zbioru $X$ otrzymujemy $\varphi:A\rarrow{1-1} B$, czyli $|A|\leq|B|$. \medskip\\
+    \indent{\color{emp}2. $\rng\varphi=B$}. Wtedy $|B|\leq|A|$, bo
+    $$\varphi:\dom\varphi\xrightarrow["na"]{1-1} B$$
+    $$\varphi^{-1}:B\xrightarrow["na"]{1-1}\dom\varphi\subseteq A$$
+    \indent{\color{emp}3. $\dom\varphi\neq A\;\land\;\rng\varphi\neq B$}. Czyli $\dom\varphi\subsetneq B$ i $\rng\varphi\subsetneq B$, zatem istnieja $s\in A\setminus\dom\varphi$ i $t\in B\setminus\rng\varphi$. W takim razie $\varphi$ moze byc rozszerzona do:
+    $$\varphi'=\varphi\cup\{\langle s,t\rangle\}.$$
+    $\varphi'\in X$ jest iniekcja, bo $t\notin\rng{\varphi}$. Dodatkowo,
+    $$\varphi\subsetneq\varphi',$$
+    czyli $\varphi$ nie jest elementem maksymalnym $X$, stad {\color{acc}zachodzi tylko 1 lub 2}, czyli $|A|\leq|B|$ lub $|A|\geq|B|$.\kondow
+\subsection*{LICZBY PORZADKOWE}
+    \begin{flushright}
+        \emph{\color{dygresyja}jeli $\langle X,\leq\rangle$ jest liniowo \\uporzadkowany i w kazdym niepustym \\podzbiorze zbioru $X$ istnieje element \\{\color{acc}najmniejszy}, to $\leq$ jest {\color{tit} dobrym porzadkiem}}
+    \end{flushright}\bigskip
+    \begin{center}\large
+        {\color{def}CZESCIOWY LINIOWY DOBRY PORZADEK} $\langle X,\leq\rangle$\smallskip\\
+        $\forall\;A\subseteq X\quad A\neq \emptyset\implies (\exists\; a\in A\;\forall\;x\in A\quad x\leq A)$\smallskip\\
+        $\forall \;a,b\in A\quad a\leq b\lor b\leq a$\medskip\\
+        oraz $\leq$ jest \emph{zwrotny, przechodni i slabo antysymetryczny}
+    \end{center}\bigskip
+    Ostry porzadek $<$ zdefiniowalismy jako skrot
+    $$x<y\iff x\leq y\land x\neq y,$$
+    teraz chcemy go {\color{acc}zdefiniowac jako pewien byt}.\bigskip\\
+    {\color{emp}TW}: relacja $<$ jest przechodnia ($\forall\;x,y,z\in X\quad x<y\land y<z\implies x<z$) i silnie antysymetryczna.\bigskip\\
+    {\color{emp}TW}: Jesli $<$ jest relacja przechodnia i slniei antysymetryczna, to relacja zadana warunkiem 
+    $$x\leq y\iff x<y\lor x=y$$ 
+    jest czesciowym porzadkiem.\bigskip\\
+    {\color{emp}TW}: Kazdemu czesciowemu porzadkowi odpowiada tylko jeden ostry porzadek i kazdemu ostremu porzadkowi odpowiada tylko jeden czesciowy porzadek - {\color{acc}powyzsza odpowiedniosc jest wzajemnie jednoznaczna}.\bigskip
+    \begin{center}\large
+        {\color{def}SPOJNOSC} ({\color{tit}!krach nie wie jak to sie nazywa!}) to warunek mowiacy, ze\smallskip\\
+        $\forall\;x,y\quad x\neq y\implies xRy\lor yRx$
+    \end{center}
+    {\color{emp}\large TWIERDZENIE}: Porzadek jest liniowy wtw zwiazany z nim ostry czesciowy porzadek jest spojny.\bigskip\\
+    {\color{emp}\large TWIERDZENIE}: Porzadek liniowy jest dobry wtw osty porzadek z nim zwiazany jest dobry
+    $$\forall\;A\subseteq X\quad A\neq\emptyset\implies\exists\;x\in A\;\forall\;y\in A\quad \neg \;y<x$$
+    co dla porzadkow liniowych jest rownowazne z:
+    $$\forall\;A\subseteq X\quad A\neq\emptyset\implies\exists\;x\in A\;\forall\;y\in A\quad \neg \;y\leq x$$
+    \emph{czyli teraz nie bedziemy rozrozniac miedzy porzadkiem ostrym a porzadkiem slabym - bedziemy sie odwoliwac do tego, co jest w danym moemncie wygodne.}
+
+\subsection*{RZECZY BARDZIEJ PODNIECAJACE}
+    \emph{\color{acc}Zajmujemy sie dobrymi porzadkami}\bigskip\\
+    NA CO ONE KURWA SA PRZYKLADAMI\\
+    NA DOBRE PORZADKI??\\
+    \indent1. $\langle \N,\leq\rangle$ - zasada minimum mowi, ze w kazdym niepystym podzbiorze $\N$ jest element najmniejszy, co jest rownowazne z zasada indukcji matematycznej.\medskip\\
+    \indent2. $\langle\{1-\frac1{n+1}\;:\;n\in\N\}, \leq\rangle$ jest w naturalny sposob izomorrficzny ze zbiorem $\N$\medskip\\
+    \indent3. $\langle \{1-\frac1{n+1}\;:\; n\in\N\}\cup\{1\},\leq\rangle$ mozemy rozwazac, czy do podzbioru nalezy czy nie nalezy 1 LUB czy kroi sie z przedzialem awartym w $[0,1]$ pusto czy nie pusto.\medskip\\
+    \indent4. $\langle\{1-{1\over n+1}\;:\;n\in\N\}\cup\{2-{1\over n+1}\;:\;n\in\N\},\leq\rangle$ - tak samo jak wyzej, bo bierzemy podzbiory $[0,1]$ i $[1,2]$ i sa one niepuste\medskip\\
+    \indent5. $\langle \{n-\frac1m\;:\;n,m\in\N\},\leq\rangle$ - rozwazamy przedzialy od $n$ do $n+1$. Jest to dobry porzadek, bo jesli wezmiemy dowolny niepusty podzbior $A$, to on sie kroi niepusto z przedzialem $[n, n+1)\neq\emptyset$. Wtedy element minimalny to $\min\{n\in\N\;:\; A\cap[n,n+1)\neq\emptyset\}$\bigskip\\
+    Wszystkie powyzsze porzadki sa podobne, ale sa od siebie rozne - {\color{acc}na przyklad 1 i 3 nie sa izomorficzne}, bo 1 ma element maksymalny, a 3 nie ma elementu maksymalnego.\bigskip\\
+    \podz{gr}\bigskip
+    \begin{center}\large
+        {\color{def}ODCINEK POCZATKOWY }- niech $\langle X,\leq\rangle$ \\
+        bedzie zbiorem z dobrym porzadkiem $\leq$ \\
+        i $a\in X$. Wowczas odcinkiem poczatkowym\\
+        tego zbioru wyznaczonym przez $a$ jest zbior\medskip\\
+        $\color{acc}\pred{X,a,\leq} = \{x\in X\;:\;x<a\}$
+    \end{center}\bigskip
+    Widac, ze w przykladach wyzej kazdy poprzedni zbior jest odcinkiem poczatkowych tego nastepnego (przyklady 2 do 3 sa odcinkami wyznaczonymi przez $1\in\R$). Bycie "krotszym porzadkiem" odpowiada byciu odcinkiem poczatkowym dluzszego porzadku.\bigskip\\
+    {\large\color{emp}TWIERDZENIE}: dla dowolnego $a\in X$:
+    $$\pred{X,a,\leq}\not\simeq X$$
+    \dowod
+    Przypuscmy, nie wprost, ze dla pewnego $a\in X$ mamy
+    $$\pred{X, a,\leq}\simeq X,$$
+    czyli istnieje {\color{acc}izomorfizm $f:X\to\pred{X,a,\leq}$}. Wtedy $f(a)<a$ i zbior
+    $$A=\{x\in X\;:\;f(x)<x\}$$
+    jest niepusty. Niech $b=\min A$, ale wtedy
+    $$f(b)<b\implies f(f(b))<f(b),$$
+    bo $f$ jest izomorfizmem, wiec zachowuje porzadek. {\color{acc}Czyli $b>f(b)\in A$, co jest sprzeczne z $b=\min A$}.\kondow
+    \podz{tit}\bigskip\\
+    {\large Niech {\color{def}$\langle X,\leq_x\rangle$, $\langle Y,\leq_y\rangle$ beda zbiorami dobrze uporzadkowanymi}. Wtedy zachodzi jedna z trzech mozliwosci:}\smallskip\\
+    \indent {\color{emp}1.} te dwa zbiory sa izomorficzne ($X\simeq Y$), czyli sa tej samej dlugosci\smallskip\\
+    \indent {\color{emp}2.} pierwszy jest dluzszy od drugiego:
+    $$\exists\;a\in X\quad \langle\pred{X, a, \leq_x},\leq\rangle\simeq\langle Y,\leq_y\rangle$$
+    \indent {\color{emp}3.} drugi jest dluzsze od pierwszego:
+    $$\exists\;a\in Y\quad \langle\pred{Y, a, \leq_y},\leq\rangle\simeq\langle X,\leq_x\rangle$$
+    \emph{To wymagaloby udowodnic, ale nie bedziemy tego robic, bo sa ciekawsze rzeczy, a dowod jest zmudny i nieprzyjemny, gdzie trzeba sie nagrzebac, a to jest przyjemny wyklad i za niedlugo bedziemy z tego korzystac bez dowodzenia :3}\bigskip\\
+    \podz{tit}
+
+\subsection*{ZBIOR TRANZYTYWNY}
+    \begin{center}\large
+        Zbior $A$ nazywamy zbiorem {\color{def}TRANZYTYWNYM}, \\
+        gdy kazdy jego element jest zarazem jego podzbiorem:\smallskip\\
+        $\forall\;x\in A\quad x\subseteq A$,\normalsize\smallskip\\
+        \emph{co jest rownowazne zapisowi:}\smallskip\\
+        $\forall\;y\forall\;z\quad z\in y\in x\implies z\in x$
+    \end{center}\bigskip
+    {\large\color{emp}PRZYKLADY}:\bigskip\\
+    \indent{\color{acc}\O} jest tranzytywny, bo nie ma elementow - skoro one nie istnieja, to moga miec dowolne wlasnosci, w szczegolnosci moga byc podzbiorami $\emptyset$. Tak jak na \emph{\color{emp}Wystach Bergamota}.\medskip\\
+    \indent $\color{acc}\{\emptyset\}$ jest to zbior, ktorego jedynym elementem jest \O, a poniewaz jest on tez jego podzbiorem, to smiga.\medskip\\
+    \indent $\color{acc}\tran{\emptyset,\{\emptyset\}}$ jest zbiorem tranzytywnym, bo jednym jego elementem jest \O, drugim singleton \O. Oba sa elementami i zawieraja sie w tym zbiorze.\medskip\\
+    \indent $\color{acc}\tran\omega$ kazda liczba naturalna jest zbiorem liczb od siebie mniejszych, \emph{\color{tit}bardziej dokladny dowod pojawi sie na cwiczeniach}.\bigskip\\
+    \podz{def}\bigskip
+    \begin{center}\large
+        \emph{\color{emp}\textexclamdown\textexclamdown\textexclamdown elementy moich elementow sa moimi elementami!!!}\smallskip\\
+        $\tran A\iff\forall\;x\in A\;\forall\;t\in x\quad t\in A$
+    \end{center}\bigskip
+    {\large Jezeli zbior jest tranzytywny, to tranzytywna jest tez jego {\color{acc}suma, zbior potegowy i jego nastepny}:}
+    $$\tran A\implies \tran{\bigcup A}\implies \tran{\Po (A)}\implies \tran {A\cup\{A\}}$$
+    \dowod
+    Udowodnimy ostatnia implikacje, czyli
+    $$\tran A\implies \tran {A\cup\{A\}}$$
+    Ustalmy $x\in A\cup\{A\}$. Wtedy mamy dwa przypadki:\smallskip\\
+    \indent 1. $x\in A$, a poniewaz $\tran A$, to $\forall\;x\in x\quad t\in A$.\smallskip\\
+    \indent 2. $x\in \{A\}$, czyli $x=A$, a z $\tran A$ otrzymujemy, ze $t\in x\implies t\in A\implies t\in \{A\}$.
+    \kondow
+\subsection*{LICZBY PORZADKOWE}
+    \begin{center}\large
+        Zbior tranzytywny $A$ nazywamy {\color{def} LICZBA PORZADKOWA}, jesli spelnia warunek\smallskip\\
+        $\forall\;x,y\in A\quad x\in y\lor x=y\lor y\in x$\medskip\\
+        \emph{\normalsize\color{emp}jest liniowo uporzadkowany przez relacje nalezenia}\medskip\\
+        i uzywamy oznaczenia $\color{def}\on A$
+    \end{center}\bigskip
+    Liczby porzadkowe oznaczamy przy pomocy liter greckich: $\alpha, \beta, \gamma, \delta, \rho, \zeta, \xi$.\bigskip\\
+    {\large Jesli {\color{acc}$\on\alpha$, to $\alpha$ jest dobrze uporzadkowane przez $\in$}, czyli kazdy niepusty zbior $A\subseteq \alpha$ ma element $\in$- minimalny:}\smallskip
+    $$\forall\;A\subseteq\alpha\quad(A\neq\emptyset\implies\exists\;x\in A\;\forall\;y\in A\quad x=y\lor x\in y),$$
+    co wynika z aksjomatu regularnosci.\bigskip\\\podz{tit}\bigskip\\
+    {\large \color{def}PODSTAWOWE WLASNOSCI LICZB PORZADKOWYCH:}\medskip\\
+    $\alpha,\beta$ - liczbyporzadkowe, $C$ - zbior liczb porzadkowych\medskip\\
+    \indent {\color{emp}1.} $\forall\;x\in\alpha\quad\on x$ - {\color{acc}elementy liczby porzadkowej sa liczbami porzadkowymi}\medskip\\
+    Ustalmy dowolne $x\in\alpha$. Poniewaz $\tran \alpha$, wiec $x\subseteq \alpha$. Zatem $\texttt{Lin}(x)$ (bo $\texttt{Lin}(\alpha)$). Potrzebujemy $\tran x$.\smallskip\\
+    Ustalmy dwolne $y\in x$ i $z\in y$. Skoro $x\subseteq\alpha$, to $y\in\alpha$, czyli $y\subseteq \alpha$, zatem $z\in \alpha$.\smallskip\\
+    Zatem $x, z$ sa porownywalne jako elementy $\alpha$. Mamy trzy mozliwosci:\smallskip\\
+    \indent \indent1. $z\in x$\smallskip\\
+    \indent \indent2. $x\in z$, ale wtedy $x\in z\in y\in x$ - sprzeczne z aksjomatem regularnosci.\smallskip\\
+    \indent \indent3. $z=x$, ale wtedy $x=z\in y\in x$ - sprzecznosc z aksjomatem regularnosci\kondow
+    \indent {\color{emp}2.} $\alpha\in\beta\iff\alpha\subset\beta$\medskip\\
+    \indent {\color{emp}3.} $\alpha\in\beta\lor\alpha=\beta\lor\beta\in\alpha$ - {\color{acc}dowolne dwie liczby porzadkowe sa porownywalne} (nie mozemy uzyc 3. jako dowodu 2., bo w dowodzie 3. uzywamy 2.)\medskip\\
+    Niech $A=\alpha\cap \beta$. Wtedy $\on A$. Przypuscmy, ze 
+    $$A\neq\alpha\land A\neq\beta.$$ 
+    Wtedy $A$ jest prawdziwym podzbiorem zarowno $\alpha$ jak i $\beta$. Ale z 2. mamy
+    $$A\in\alpha\land A\in\beta,$$
+    czyli $A\in\alpha\cap\beta=A$. Tak byc nie moze.\smallskip\\
+    Zatem $A=\alpha$ lub $A=\beta$, czyli $\alpha\subseteq\beta$ lub $\beta\subseteq\alpha$. Jesli $\alpha\neq\beta$, to $\alpha\subset\beta$ lub $\beta\subset\alpha$, czyli z 2. $\alpha\in\beta$ llub $\beta\in\alpha$.\kondow    
+    \indent {\color{emp}4.} $\tran C\implies \on C$\medskip\\
+    \indent {\color{emp}5.} $C\neq \emptyset\implies \exists\;\alpha\in C\;\forall\;\beta\in C\quad \alpha=\beta\lor\alpha\in \beta$\bigskip\\
+    \emph{\color{emp}Zamiast $\alpha\in\beta$ bedziemy pisac $\alpha<\beta$}\smallskip\\
+    Mozemy myslec o zbiroze dobrze uporzadkowanym $\langle \alpha, \in\rangle$. A wiec mozemy mowic o $\pred{\alpha, \in, \beta}$, ale bedziemy to skracac do
+    $$\pred{\alpha,\in,\beta}=\pred{\alpha,\beta}=\{x\in\alpha\;:\;x\in\beta\}=\beta$$
+    Czyli kazda liczba porzadkowa jest zbiorem liczb porzadkowych od niej mniejszych.\bigskip\\
+    \begin{center}
+        {\large\color{def} Nie istnieje zbior wszystkich liczb porzadkowcyh}
+    \end{center}\bigskip
+    \dowod
+    Przypuscmy nie wprost, ze $ON$ jest zbiorem wszystkich liczb porzadkowych. Wtedy $\tran {ON}$, bo jesli $\alpha\in ON$ i $\beta\in\alpha$, czyli z 1. $\beta\in ON$. Ponadto, $\texttt{Lin}(ON)$ z 3. Zatem $\on {ON}$, czyli $ON\in ON$, co jest sprzeczne.
+    \kondow
+    \podz{gr}\bigskip\\
+    {\large\color{emp}PRZYKLADY}\bigskip\\
+    \indent $\on\emptyset$ - tranzytywny i jego elementy sa porownywalne (bo ich nie ma)\medskip\\
+    \indent $\on\omega$ - dowod w wersji oszukane, bo jest tranzytywny, a porowywalne, bo $\omega$ jak mamy wieksza liczbe, to do niej nalezy mniejsza, albo sa rowne.\medskip\\
+    \indent Jesli $\on\alpha$, to wtedy $\alpha\cup\{\alpha\}$ jeset najmniejsza liczba porzadkowa od $\alpha$ i nazywamy ja {\color{acc}nastepnikiem (porzadkowym)} i oznaczamy $\alpha+1$\medskip\\
+
+\subsection*{GLOWNE TWIERDZENIE <3}
+    \begin{center}\large
+        Niech $\langle X,<\rangle$ bedzie zbiorem \\
+        dobrze uporzadkowanym. Wtedy istnieje dokladnie \\
+        jedna liczpa porzadkowa $\alpha$ taka, ze\smallskip\\
+        $\langle X, <\rangle\simeq\langle\alpha,\in\rangle$
+    \end{center}\bigskip
+    \dowod
+    {\color{acc}JEDYNOSC}:\medskip\\
+    Przypuscmy, nie wprost, ze istnieja dwie rozne liczby porzadkowe $\alpha, \beta$ spelniajace zaleznosc z twierdzenia. Ale Wtedy
+    $$\alpha\simeq\beta,$$
+    co jest sprzeczne z ich roznoscia - ktoras musi byc mniejsza i wtedy wyznacza pewien odcinek poczatkowy w $\beta$, a nie mozna byc homeomorficznym ze swoim odcinkiem pcozatkowym.\medskip\\
+    {\color{acc}ISTNIENIE}\medskip\\
+    Zdefiniujmy zbior
+    $$Y=\{a\in X\;:\;\exists\;!\gamma\quad \on\gamma\land\langle\pred{X,a,<},<\rangle\simeq\gamma\}$$
+    czyli biore podzbior $X$, dla ktorych to dziala. Zauwazmy, ze $Y\neq\emptyset$, bo w $X$ istnieje element minimalny.\smallskip\\
+    Dla $a\in Y$ rozwazmy izomorfizm 
+    $$\varphi(a):\pred{X,a,<}\to \gamma_a.$$
+    Niech $a\in Y$ i $b<a$. Wtedy mamy
+    \pmazidlo
+    \draw[gray, thick] (0, 0)--(5, 0);
+    \draw[gray, thick] (0, 2)--(5,2);
+    \node at (5.3, 0) {$\gamma_a$};
+    \node at (5.3, 2) {a};
+    \node at (3, 2.3) {b};
+    \node at (3, -0.3) {$\varphi_a(b)$};
+    \draw[white, ultra thick, ->] (3, 2)--(3, 0);
+    \kmazidlo
+    Wtedy $\varphi_a(b)\in\gamma_a$. Wtedy $\varphi_a obciete do \pred{X, b, <}$ jest izomorfizmem pomiedzy $\pred{X, b, <}$ i $\varphi_a(b)$. Zatem $b\in Y$. Czyli $Y$ jest zamkniety w dol.\smallskip\\
+    Stad wnioskujemy, ze $X=Y$ lub $Y=\pred{X,c,<}$:
+    $$X\neq Y\implies X\setminus Y\neq \emptyset\;:\; c=\min(X\setminus Y)\implies Y=\pred{X,c,<}$$
+    Mamy zbior $Y$ iz kazdym jego elementem jest zwiazana jakas liczba przadkowa. Z aksjomatu zastepowania moge wziac zbiore wszystkich tych liczb porzadkowych.\smallskip\\
+    Wezmy "funkcje" $f:Y\to ON$, $f(a)=\gamma_a$. Z aksjomatu zastepowania istnieje zbior $A=\rng f=\{\gamma_a\;:\;a\in Y\}$. Chce pokazac, ze $A$ jest liczba porzadkowa.\smallskip\\
+    \indent 1. $\tran A$:\smallskip\\
+    Ustalmy $\xi\in A$ i $\zeta\in \xi$. Skoro $\xi\in A$, to $\xi=\gamma_a$ dla pewnego $a\in Y$. Wtedy istnieje $b<a$ takie, ze $\varphi_a(b)=\zeta$. Stad wynika, ze $\zeta=\gamma_b$, czyli $\zeta\in A$\smallskip\\
+    Zatem z 4. $\on A$.\smallskip\\
+    Czyli $f:Y\to A$.\smallskip\\
+    \indent 2. $f$ jest izomorfizmem porzadkowym. Jest 1-1 z definicji $Y$. Jest "na" z definicji $A$. Zachowuje porzadek, bo mamy odcinki poczatkowe.\smallskip\\
+    \indent 3. $X=Y$, bo gdyby $Y=\pred{X,c,<}$, to wlasnie pokazalismy, ze $c\in Y$. W takim razie tu bylaby sprzecznosc.
+    \kondow
+    \begin{center}\large
+        Niech $\langle X, <\rangle$ bedzie zbiorem dobrze uporzadkowanym. {\color{def}TYPEM PORZADKOWYM} tego zbioru dobrze uporzadkowanego nazywamy te jedyna liczbe porzadkowa z ktora jest on homeomorficzny.
+    \end{center}
+    Na przyklad $\texttt{ot}(\N, \leq)=\texttt{ot}(\langle \{1-\frac1{n+1}\;:\;n\in\N\},\leq\rangle)=\omega$, a $\texttt{ot}(\langle \{1-\frac1{n+1}\;:\;n\in\N\},\leq\rangle)=\omega+1$.
+\end{document}

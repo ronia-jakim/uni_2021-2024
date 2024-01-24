@@ -1,0 +1,195 @@
+\section{PRZESTRZENIE ZUPEŁNE}
+\subsection{CIĄG CAUCHY'EGO}
+\begin{center}\large
+    Ciąg $(x_n)$ jest Chauchy'ego, jeśli\smallskip\\
+    $\color{def}(\forall\;\varepsilon>0)(\exists\;N)(\forall\;n,m\geq N)\; d(x_n, x_m)<\varepsilon$\medskip\\
+    Jeśli ciąg jest zbieżny, to \\jest Cauchy'ego, ale nie musi być odwrotnie.
+\end{center}
+\begin{center}\large
+    Przestrzeń metryczna jest {\color{def}ZUPEŁNA}, \\gdy każdy ciąg Cauchy'ego jest zbieżny
+\end{center}
+Przykłady metryk gdzie ciągi Cauchyego mogą być niezbieżne:\smallskip\\
+\indent1. $(0,1)$ z ciągiem $(\frac1n)$\medskip\\
+\indent2. $\Q$ wiele ciągów Cauchyego, które zbiegają do $a\in\R$, czyli nie są zbieżne w $\Q$.\medskip\\
+{\large\color{acc}PRZYKŁADY}\smallskip\\
+\indent1. przestrzeń dyskretna\smallskip\\
+\indent2. $[0,1]$\smallskip\\
+\indent3. $\R$, bo jeśli mamy ciąg Cauchyego, to on musi być ograniczony, czyli 
+$$(\exists\;a,b)(\forall\;n)\;x_n\in[a,b]$$ 
+i stosujemy zwartość $[a,b]$ (fakt niżej)\bigskip\\
+
+\begin{center}\large
+    \color{acc}Przestrzenie zwarte są zupełne.
+\end{center}
+\dowod
+Jeśli $(x_n)$ ma podciąg zbieżny i jest Cauchyego, to jest zbieżny. (więcej na liście zadań)\bigskip\\
+\podz{gr}\bigskip\\
+Zupełność nie jest własnością topologiczną - $(0,1)$ jest homeomorficzne z $\R$, ale $(0,1)$ nie jest zupełna, a $\R$ jest zupełn - {\large\color{acc}NIE ZACHOWUJE SIĘ PRZEZ HOMEOMORFIZMY}\bigskip
+\begin{center}\large
+    Przestrzeń metryczna jest {\color{def}METRYZOWALNA W SPOSÓB ZUPEŁNY}, gdy\smallskip\\
+    $(\exists\;Y)\;X\cong Y\quad Y\;-\;zupelna$
+\end{center}
+
+\subsection{TWIERDZENIE BANACHA}
+\begin{center}\large
+    {\color{def}TWIERDZENIE BANACHA O PUNKCIE STAŁYM}\smallskip\\
+    jeśli $(X,d)$ jest przestrzenią zupełną i mamy \smallskip\\
+    $f:X\to X$\smallskip\\
+    która jest {\color{acc}kontrakcją} (tzn $(\exists\;c<1)(\forall\;x,y\in X)\;d(f(x), f(y))\leq d(x,y)\cdot c$)\smallskip\\
+    to $\color{def}(\exists\;x\in X)\;f(x)=x$
+\end{center}
+\dowod
+Tworzymy ciąg w następujący sposób (iterujemy $f$):
+$$x_0\in X$$
+$$x_{n+1}=f(x_n).$$
+Będziemy się starali pokazać, że jest to ciąg Cauchyego. Pomiędzy $x_0, x_1$ odglełość jest średnio kontrolowana, ale już odległość
+$$d(x_1, x_2)=d(f(x_0), f(x_1))\leq c\cdot d(x_0, x_1).$$
+Robimy tak $n$ razy i dostajemy
+$$d(x_n, x_{n+1})=d(f(x_{n-1}), f(x_n))\leq c^n\cdot d(x_0, x_1),$$
+czyli kolejne wyrazy ciągu są coraz bliżej siebie.
+\begin{align*}
+d(x_n, x_m)&\leq d(x_n, x_{n+1})+...+d(x_{m-1}, x_m)\leq \\
+            &\leq c^n d(x_0, x_1)+...+c^md(x_0, x_1)=\\
+            &=d(x_0, x_1)(x^n+...+c^m)=\\
+            &=d(x_0, x_1)\sum c^k
+\end{align*}
+Ale wtedy
+$$(\forall\;\varepsilon>0)(\exists\;N)\sum\limits_{n=N}^\infty c^n d(x_0, x_1)<\varepsilon,$$
+bo $\sum c^n<\infty$. Wtedy dla $n,m>N$
+\begin{align*}
+    d(x_n, x_m)&\leq (c^n+...+c^m)d(x_0, x_1)\leq \\
+                &\leq\sum\limits_{k=N}^\infty c^kd(x_0, x_1)<\varepsilon
+\end{align*}
+Z zupełności $(\exists\; x)\;(x_n)\to x$, czyli $x=\lim x_n$. W takim razie
+$$f(x)=\lim f(x_n)=\lim x_{n+1}=x$$
+\kondow
+
+\subsection{TWIERDZENIE CANTORA}
+\begin{center}\large
+    {\color{def}TWIERDZENIE CANTORA}: jeśli $(X, d)$ jest przestrzenią zupełną, a $(F_n)$ to ciąg zbiorów domkniętych taki, że\smallskip\\
+    $diam(F_n)\to 0$, gdzie $diam(F) = \sup\{d(x, y)\;:\;x,y\in F\}$,\smallskip\\
+    oraz $(\forall\;n)\;F_{n+1}\subseteq F_n$.\medskip\\
+    {\color{acc}Wtedy $\bigcap F_n\neq\emptyset$.}
+\end{center}
+\dowod
+Chcemy wskazać przynajmniej jeden element tego, co chcemy pokazać że jest niepuste. \\Skonstruujmy więc ciąg
+$$x_0\in F_0$$
+$$x_1\in F_1$$
+$$x_2\in F_2$$
+$$x_n\in F_n.$$
+Sprawdźmy, że jest to ciąg Cauchyego. Niech $\varepsilon>0$, a $N$ będzie takie, że
+$$(\forall\;n>N)\;diam(F_n)<\varepsilon.$$
+To wtedy
+$$(\forall\;n,m>N)\;x_n, x_m\in f_N.$$
+Czyli istnieje granicaL $x=\lim (x_n)$. Jeśli należy do przekroju, to należy do wszystkich zbiorów:
+$$x\in F_0,\;bo\;(\forall\;n)\;x_n\in F_0$$
+$$x_m\in F_n,\;bo\;(\forall\;m>n)\;x_m\in F_n$$
+czyli $x\in\bigcap\limits_{n\in\N} F_n$.
+\kondow
+
+\subsection{TWIERDZENIE BARE'A}
+\begin{center}\large
+    {\color{def}TWIERDZENIE BARE'A}: jeśli $(X,d)$ jest przestrzenią \\{\color{acc}metryzowalną w sposób zupełny}, to jeśli $(F_n)$ \\jest ciągiem zbiorów {\color{acc}domkniętych o pustym wnętrzu}, to\smallskip\\
+    $\bigcup F_n\neq X$
+\end{center}
+\dowod
+Załóżmy, że $X$ jest zupełna. Będziemy konstruować ciąg Cauchyego, który zbiega do punktu spoza $\bigcup F_n$.
+$$x_0,\;r_0<1\quad \overline{B(x_0, r_0)}\cap F_0=\emptyset,$$
+czyli wybieram punkt z dopełnienia $F_0$ i opisuję na nim kulę, która tnie się pusto z $F_0$.
+$$x_1\in B(x_0, r_0), \;r_1<\frac12\quad \overline{B(x_1, r_1)}\cap F_1=\emptyset,$$
+co jest możliwe, bo $F_1$ ma puste wnętrze.\bigskip\\
+$(x_n)$ jest Cauchyego, bo $r_n\to0$. Z zupłności $(\exists\;x)\;x=\lim(x_n)$. Chcę pokazać, że $x\notin \bigcup F_n$.
+$$x\notin F_0,\;bo\;(x_n)\subseteq \overline{B(x_0,r_0)}$$
+czyli $x\notin\bigcup F_n$.
+\kondow
+{\large\color{acc}WNIOSKI}\medskip\\
+\indent 1. $|\R|\neq|\N|$\smallskip\\
+\indent 2. $\Q$ nie jest metryzowalne w sposób zupełny, bo nie spełnia twierdzenia Bare'a, \\bo $\Q=\bigcup_{q\in\Q}\{q\}$.\bigskip\\
+\podz{gr}\bigskip
+\begin{center}\large
+    {\color{acc}Istnieje funkcja ciągła $f:[0,1]\to\R$ \\niemonotoniczna na żadnym przedziale}
+\end{center}
+\dowod
+Niech $I$ będzie przedziałem, a $C^I_\nearrow$ niech będzie zbiorem funkcji ciągłych na $[0,1]$, które \\są niemalejące. Pokażemy, że jest to zbiór domknięty o pustym wnętrzu. {\color{cyan}????}
+
+\subsection{NIE WIEM CO SIĘ DZIAŁO}
+\begin{center}\large
+    $C[0, 1]$ z metryką supremum jest przestrzenią zupełną.
+\end{center}
+\dowod
+Niech $(f_n)$ będzie ciągiem Cauchyego funkcji ze zbioru $C[0, 1]$. Wówczas
+$$(\forall\;\varepsilon>0)(\exists\;N)(\forall\;n, m>N)d_sup(f_n, f_m)<\varepsilon.$$
+Ustalmy dowolne $x\in[0,1]$ takie, że $(f_n(x))_n\subseteq \R$ jest ciągiem Cauchyego. Ustalmy dowolne $\varepsilon>0$. Z tego, że jest to ciąg Cauchyego wiemy, że istnieje $N$ takie, że
+$$(\forall\;n, m>N)\;|f_n(x)-f_m(x)|<\varepsilon.$$
+Zatem $(f_n(x))$ ma granicę. Niech $f$ będzie taką funckją, że\smallskip\\
+\indent - $f$ jest granicą $(f_n)$, czyli
+$$(\forall\;\varepsilon>0)(\exists\;N)(\forall\;n>N)(\forall\;x\in[0, 1])\;|f_n(x)-f(x)|<\varepsilon$$
+\indent - $f$ jest ciągłe - bo jest jednostają granicą ciągu funkcji ciągłych.
+Czyli pokaza-\\liśmy, że dowolny ciąg $(f_n)$ jest jednostajnie zbieżny do pewnego $f$, więc przestrzeń jest zupełna {\color{cyan}????}
+\kondow
+Przestrzeń $C[0, 1]$ z metryką całkową nie jest zupełna, bo w ciągu Cauchyego pola dążą do 0, wystarczy ograniczyć je prostokątami - nie ma ciągłości. Jeśli z kolei zdefiniujemy metrykę korzystając z {\color{acc}całki Lebesgue'ga}, co znajduje zastosowanie w rachunku prawdo-\\podobieństwa.\bigskip\\
+\podz{gr}\bigskip
+\begin{center}\large
+    Jeśli $X$ jest przestrzenią zupełną, a $F_n\subseteq X$ jest zbiorem domkniętym o pustym wnętrzu, czyli $\bigcup F_n\neq X$. Wtedy\smallskip\\
+    {\color{def}$A\subseteq X$ jest 1 kategorii} (Bar{\"e}'a), gdy\smallskip\\
+    $A=\bigcup F_n$\smallskip\\
+    dla pewnych $F_n$ domkniętych o pustym wnętrzu.
+\end{center}
+
+\subsection{TWIERDZENIE ASOLIEGO-ARZELI}
+\begin{center}\large
+    Niech $F\subseteq C[0, 1]$ takie, że\smallskip\\
+    \begin{tabular} { c }
+        \makecell [l] {
+            - $F$ jest wspólnie ograniczony, czyli\smallskip\\
+            \indent{\normalsize$(\exists\;c>0) (\forall\;f\in F)(\forall\;x\in [0, 1])|f(x)|<c$}\smallskip\\
+            - $F$ są jednakowo ciągłe, czyli\smallskip\\
+            \indent{\normalsize$(\forall\;x)(\forall\;\varepsilon>0)(\exists\;\delta>0)(\forall\;f\in F)\;|x-y|<\delta\implies |f(x)-f(y)|<\varepsilon$} }
+    \end{tabular}\medskip\\
+    Wtedy $\overline F$ jest podprzestrzenią zwartą (\emph{jest domknięte}).
+\end{center}
+\dowod
+Korzystając z faktu udowodnionego na ćwiczeniach: zupełnośc i całkowita ograniczoność $\implies$ zwartość, a ta z kolei pociąga zupełność.\bigskip\\
+Wiemy, że przestrzeń $C[0, 1]$ jest przestrzenią zupełną oraz że $\overline F$ jest domknięciem prze-\\strzeni zupełnej, więc też jest zupełne.\smallskip\\
+Chcemy miec całkowitą ograniczoność, czyli
+$$(\forall\;\varepsilon>0)(\exists\;A\;-\;\texttt{skończone})(\exists\;a\in A)\;d(x, a)<\varepsilon.$$
+Ustalmy dowolne $\varepsilon>0$. Wówczas rodzina
+$$\rodz A=\{U\underset{otw}\subseteq C[0, 1]\;:\;(\forall\;f\in F)\;diam( f[U])<\varepsilon\}$$
+jest pokryciem, ponieważ dla dowolnego $x\in [0, 1]$ istnieje $\delta$ dobrana do $\frac\varepsilon2$ z jednakowej \\ciągłości:
+$$(\forall\;f\in F)\;diam(f[B_j(x)])<\varepsilon$$
+$$x\in B_\delta(x)\in \rodz A.$$
+{\color{cyan}NIE ROZUMIEM TEGO DOWODU}
+
+\subsection{PRZESTRZEŃ POLSKA}
+\begin{center}\large
+    $X$ jest {\color{def}PRZESTRZENIĄ POLSKĄ}, jeśli $X$ jest {\color{acc}zupełna} i {\color{acc}ośrodkowa}.
+\end{center}\bigskip
+{\color{cyan}NIE ROZUMIEM TUTAJ RESZTY}\bigskip
+
+\subsection{ZBIORY I KATEGORII}
+\begin{center}\large
+    Zbiór $M\subseteq X$ jest zbiorem {\color{def}I KATEGORII}, jeżeli $M\subseteq \bigcup\limits_{n\in\N}F_n$, \\gdzie $F_n$ to domknięte zbiory o pustym wnętrzu.
+\end{center}\bigskip
+\begin{center}\large
+    $A\subseteq X$ ma {\color{def}WŁASNOŚĆ BAIRE'a}, jeśli istnieje zbiór otwarty $U$ oraz $M$ I kategorii takie, że\smallskip\\
+    $A=U\Delta M=(U\setminus M)\cup(M\setminus U)$\medskip\\
+    czyli jest otwarty modulo zbiór I kategorii
+\end{center}\bigskip
+\podz{gr}\bigskip
+\begin{center}\large
+    Jeżeli $F\subseteq \R$ jest domknięty, to ma własność Baire'a
+\end{center}
+\dowod
+$$F=Int(F)\cup(F\setminus Int(F))$$
+Zauważmy, że zbiór $(F\setminus Int(F))$ jest domkniętym zbiorem o pustym wnętrzu, a $Int(F)$ jest \\zbiorem otwartym. W takim razie $F$ spełnia własnośc Baire'a ($F=(Int(F)\setminus Bd(F))\cup(Bd(F)\setminus Int(F))$)
+\kondow
+Zbiory I kategorii również mają własność Baire'a.\bigskip\\
+\begin{center}\large
+    Rodzina zbiorów o własności Baire'a jest \\zamknięta na dopełnienia i nieskończone sumy
+\end{center}
+\dowod
+Niech zbiór $A$ będzie zbiorem spełniającym własność Baire'a, czyli
+$$A=U\Delta M.$$
+W takim razie
+$$A^c=Int(A^c)\Delta (M\cup((U^c)\setminus Int(U^c))),$$
+gdzie $(U^c)\setminus Int(U^c)$ jest zbiorem domkniętym o pustym wnętrzu. 

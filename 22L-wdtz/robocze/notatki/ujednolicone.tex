@@ -1,0 +1,396 @@
+\documentclass{article}
+
+\usepackage{../../notatka}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{makecell}
+\usepackage{showframe} 
+%\usepackage[nomathsymbols, OT4]{polski}
+\selectlanguage{polish}
+
+\renewcommand*\ShowFrameColor{\color{gr}}
+
+\title{\ttfamily {\color{tit}Wstęp do Teorii Zbiorów}\medskip\\ \normalsize {\color{dygresyja}notatki na podostawie wykładów J. Kraszewskiego}}
+\author{\color{emp}Weronika Jakimowicz}
+\date{}
+
+\begin{document}\ttfamily
+\maketitle\bigskip
+\begin{center}
+    {\color{acc}\emph{Ze wstępem do matematyki jest jak z uświadamianiem sekualnym dzieci - mówi im się prawdę, ale nie mówi im się wszystkiego.}}
+\end{center}\bigskip
+\begin{center}
+    \tikz\randuck;
+\end{center}
+\newpage
+\tableofcontents
+\newpage
+\section{JĘZYK LOGIKI}
+
+\subsection{FUNKCJE}
+\begin{center}\large
+    {\color{def}FUNKCJA} - zbiór par uporządkowanych o właśności jednoznaczości,\\
+    czyli nie ma dwóch par o tym samym poprzedniku i dwóch różnych następnikach.
+\end{center}\bigskip
+Teraz dziedzinę i przeciwdziedzinę określamy poza definicją funkcji - nie są na tym \\samym poziomie co sama funkcja:
+\begin{align*}
+    \dom{f}&=\{x\;:\;(\exists\;y)\;\langle x,y\rangle\in f\}\\
+    \rng{f}&=\{y\;:\;(\exists\;x)\;\langle x,y\rangle\in f\}.
+\end{align*}
+Warto pamiętać, że {\color{acc}definicja funkcji} jako \emph{podzbioru $f\in X\times Y$ takiego, że dla każdego $x\in X$ istnieje dokładnie jeden $y\in Y$ takie, że $\langle x,y\rangle \in f$} jest tak samo poprawną defini-\\cją, tylko {\color{emp}kładzie nacisk na inny aspekt} funkcji.
+
+\subsection{OPERACJE UOGÓLNIONE}
+Dla {\color{def}rodziny indeksowanej} $\{A_i\;:\;i\in I\}$ definiujemy:\smallskip\\
+    \indent - jej sumę: $\bigcup\limits_{i\in I}A_i = \{x\;:\;(\exists\;i\in I)\;x\in A_i\}$\smallskip\\
+    \indent - jej przekrój: $\bigcap\limits_{i\in I}A_i=\{x\;:\;(\forall\;i\in I)\;x\in A_i\}$\medskip\\
+Dla {\color{def}nieindeksowanej rodziny zbiorów} $\mathcal{A}$ definiujemy:\smallskip\\
+    \indent - suma: $\bigcup\mathcal{A} = \{x\;:\;(\exists\;A\in\mathcal{A})\;x\in A\}$\smallskip\\
+    \indent - przekrój: $\bigcap\mathcal{A}=\{x\;:\;(\forall\;A\in\mathcal{A})\;x\in A\}$\medskip\\
+Formalnie, indeksowana rdzina zbiorów jest funkcją ze zbioru indeksów w rodzinę zbio-\\rów, więc powinna być zapisywana w nawiasach trójkątnych (para uporządkowana). Sto-\\sowany przez nas zapis w nawiasach klamrowych oznacza zbiór wartości takiej funkcji \\i nie ma znaczenia czy dany podzbiór pojawi się w nim wielokrotnie. Nie przeszkadza \\to więc w definiowaniu sumy czy przekroju.\bigskip\\
+
+\podz{gr}\bigskip\\
+
+{\large{\color{def} UOGÓLNIONY ILOCZYN KARTEZJAŃSKI} (uogólniony produkt) zbiorów:}\medskip\\
+Dla dwóch i trzech zbiorów mamy odpowiednio:
+$$A_1\times A_2=\{\parl x,y\parr\;:\;x\in A_1\land y\in A_2\}$$
+$$A_1\times A_2\times A_3=\{\parl x,y,z\parr\;:\;x\in A_1\land y\in A_2\land z\in A_3\}.$$
+Pierwszym pomysłem na definiowanie iloczynu kartezjańskiego trzech i wiecej zbiorów \\będzie definicja rekurencyjna:
+$$A_1\times A_2\times A_3:=(A_1\times A_2)\times A_3.$$
+
+Pojawia się problem formalny - {\color{emp}iloczyn kartezjański nie jest łączny}:
+$$(A_1\times A_2)\times A_3\neq A_1\times (A_2\times A_3)$$
+$$\parl\parl a_1, a_2\parr a_3\parr\neq\parl a_1,\parl a_2,a_3\parr\parr.$$
+\emph{Mimo, że iloczyn kartezjański nie jest łączny, matematycy nie mają problemu uznawać, \\że jest łączny, gdyż {\color{acc}istnieje naturalna, kanoniczna bijekcja}, która lewej stronie \\przypisuje prawą stronę.}\medskip\\
+
+Niech $\parl A_i\;:\;i\in I\parr$ będzie indeksowaną rodziną zbiorów, czyli
+$$A:I\to\bigcup\limits_{i\in I}A_i$$
+$$A(i)=A_i$$
+Wyobraźmy sobie iloczyn kartezjański dwóch zbiorów nie jako punkt na płaszczyźnie, \\ale jako dwuelementowy ciąg:
+\pmazidlo
+\draw[white, thick] (0, 0) -- (0, 2);
+\draw[white, thick] (2, 0) -- (2, 2);
+\draw[acc, ultra thick] (0, 0.5) -- (2, 1.5);
+\filldraw [color=acc, fill=back, thick] (0, 0.5) circle (0.1);
+\filldraw [color=acc, fill=back, thick] (2, 1.5) circle (0.1);
+\node at (-0.3, 0.5) {$a_1$};
+\node at (2.3, 1.5) {$a_2$};
+\node at (0, -0.3) {$A_1$};
+\node at (2, -0.3) {$A_2$};
+\kmazidlo
+To przedstawienie łatwo jest przełożyć na nieskończenie długi iloczyn kartezjański, \\wystarczy dorysować kolejne osie z elementami kolejnego podzbioru rodziny:
+\pmazidlo
+\draw[white, thick] (0, 0) -- (0, 2);
+\draw[white, thick] (2, 0) -- (2, 2);
+\node at (3, 1) {...};
+\draw[acc, ultra thick] (0, 0.5) -- (2, 1.5);
+\filldraw [color=acc, fill=back, thick] (0, 0.5) circle (0.1);
+\filldraw [color=acc, fill=back, thick] (2, 1.5) circle (0.1);
+\node at (-0.3, 0.5) {$a_1$};
+\node at (2.3, 1.5) {$a_2$};
+\node at (0, -0.3) {$A_1$};
+\node at (2, -0.3) {$A_2$};
+\draw[acc, ultra thick] (2, 1.5)--(2.4, 1.2);
+\draw[acc, ultra thick] (3.6, 1) -- (4, 0.6);
+\draw[white, thick] (4, 0)--(4, 2);
+\filldraw[color=acc, fill=back, thick] (4, 0.6) circle (0.1);
+\node at (4.3, 0.6) {$a_n$};
+\node at (4, -0.3) {$A_n$};
+\kmazidlo
+W ten sposób powstaje funkcja, która kolejnym indeksom przypisuje element z tego inde-\\ksu:
+$$f:I\to \bigcup\limits_{i\in I} A_i$$
+$$f(i)\in A_i.$$
+Według tego, {\color{def}uogólniony iloczyn kartezjański to zbiór funkcji} ze zbioru indeksowego \\w rodzinę indeksowaną:
+$$\prod\limits_{i\in I}A_i=\{f\in (\bigcup\limits_{i\in I}A_i)^I\;:\;(\forall\;i\in I)\;f(i)\in A_i\}$$
+Jednak dla $I=\{1, 2\}$ nie zachodzi równość:
+$$\prod\limits_{i\in I} A_i\neq A_1\times A_2$$
+Po lewej mamy zbiór funkcji, a po prawej iloczyn kartezjański. Możemy pokazać natu-\\ralną bijekcję między lewą a prawą stroną, ale byty są róże. Wystarczy pamiętać, że \\mamy co innego i możemy się tym nie przejmować <3
+
+\subsection{JĘZYK PIERWSZEGO RZĘDU}
+{\color{emp}JĘZYK RZĘDU ZERO}, czyli rachunek zdań: $p, q, r, ..., \lor, \land, \neg, \implies, \iff$\bigskip\\
+{\color{emp}JĘZYK PIERWSZEGO RZĘDU} jest nadzbiorem języka rzędu zero\medskip\\
+{\color{acc}część logiczna:}\smallskip\\
+    \indent 1. symbole zmiennych: $V=\{x_0, x_1, ...\}$\\
+    \indent 2. symbole spójników logicznych: $\{\neg, \lor, \land, \implies, \iff\}$\\
+    \indent 3. symbole kwantyfikatorów: $\{\forall, \exists\}$\\
+    \indent 4. symbol równości: =\medskip\\
+{\color{acc}część pozalogiczna:}\smallskip\\
+    \indent 1. symbole funkcyjne: $F=\{f_i\;:\;i\in I\}$\\
+    \indent 2. symbole relacyjne (predykaty): $R=\{r_j\;:\;j\in J\}$\\
+    \indent 3. symbole stałe: $C=\{c_k\;:\; k\in K\}$\medskip\\
+{\color{def}ARNOŚĆ} - odpowiada liczbie argumentów funkcji lub relacji. Każdy symbol ma swoją \\arność.\smallskip\\
+{\color{def}SYGNATURA} - zawiera informację o tym, ile jest symboli funkcyjnych, relacyjnych lub \\stałych i jakiej są arności w danym języku. Sygnatura charakteryzuje język.
+
+\subsection{SYNTAKTYKA vs SEMANTYKA}
+\emph{Znała suma cała rzeka,\\ 
+Więc raz przbył lin z daleka\\
+I powiada: "Drogi panie,\\
+Ja dla pana mam zadanie,\\
+Jeśli pan tak liczyć umie,\\
+Niech pan powie, panie sumie,\\
+Czy pan zdoła w swym pojęciu,\\
+Odjąć zero od dziesięciu?"\\
+(...)\\
+"To dopiero mam z tym biedę - \\
+Może dziesięc? Może jeden?" }\medskip\\
+Jak odjąc 0 od 10:\\
+    \indent semantycznie: 10 - 0 = 10\\
+    \indent syntaktycznie: od ciągu 1 i 0 odjęcie 0 to zostawienie tylko 1\bigskip\\
+
+{\color{def}SEMANTYKA} - patrzy na znaczenie zapisów, nie sam napis.\\
+{\color{def}SYNTAKTYKA} - interesuje ją tylko zapis, język, a znaczenia nie ma.
+
+\subsection{KONSTRUOWANIE JĘZYKA}
+\begin{center}\large
+    {\color{def}TERMY} - bazowy zbiór termów to \\zbiór zmiennych i zbiór stałych:\smallskip\\
+    $T_0=V\cup C$\smallskip\\
+    {\normalsize Do ich budowy wykorzystujemy symbole funkcyjne ($F$)}
+\end{center}
+Załóżmy, że mamy skonstruowane termy aż do rzędu $n$ i chcemy skonstruować termy rzędu \\$n+1$. Jeśli mamy symbol funkcyjny arności $k$, to {\color{emp}termem jest zastosowanie tego symbolu do wczesniej skonstruowanych termów}, których mamy $k$:
+$$f\in F\quad f\texttt{ -arności k}$$
+$$F(t_1, ..., t_k)\quad t_1, ..., t_k\in \bigcup\limits_{i=0}^n T_i$$
+Czylil jeśli mamy zbiór termów, to \emph{\color{emp}biorąc wszystkie dostępne symbole funkcyjne i sto-\\sując je na wszystkie możliwe sposoby do dotychczas skonstruowanych termów} tworzone \\są nowe termy.\medskip
+\begin{center}Termy to potencjalne wartości funkcji\end{center}\bigskip
+\begin{center}\large
+    {\color{def}FORMUŁY} - budowane są rekurencyjnie, zaczynając \\od formuł atomowych:\smallskip\\
+    $t=s,\quad t,s\in TM$\smallskip\\
+    stosując wszystkie relacje równoważności termów\smallskip\\
+    $r\in R\quad r(t_1, ..., t_k)$\smallskip\\
+    {\normalsize zastosowanie symbolu relacyjnego na odpowiedniej ilości termów tworzy formułę}
+\end{center}\medskip
+Bazowym poziomem frmuł jest formuła atomowa:
+$$F_{m_0}=\{\varphi\;:\;\varphi\texttt{ - formuła atomowa}\}$$
+Jeśli mamy $F_{m_k}$ dla pewnego $k<n$, czyli wszystkie formuły poniżej $n$ zostały skon-\\struowane, to
+$$F_{m_n}\;:\;\neg\;(\varphi),\;\varphi\lor\phi,\;\varphi\land\phi,...\quad \texttt{dla }\varphi,\phi\in\bigcup\limits_{k<n}F_{m_k},$$
+czyli {\color{emp}używamy wszystkich spójników logicznych} dla poprzednich formuł
+$$F_{m_n}\;:\;(\forall\;\varphi)\;(\exists\;x_i)\quad \texttt{dla }\varphi\in\bigcup\limits_{k<n}F_{m_k},\;x_i\in V$$
+{\color{emp}kwantyfikujemy też po wszystkich możliwych zmiennych wszystkiemożliwe formuły}
+$$FM = \bigcup\limits_{n=0}^\infty F_{m_n}$$
+\subsection{JĘZYK TEORII MNOGOŚCI}
+\begin{center}\large
+    {\color{def}$L=\{\in\}$}\smallskip\\
+    składa się z jednego binarnego predykatu, \\który nie jest jeszcze należeniem
+\end{center}\bigskip
+W racuhnku zdań przejście z syntaktyki do semantyki to nadanie symbolom wartości \\prawda lub fałsz.\bigskip
+\begin{center}\large
+    {\color{def}SYSTEM ALGEBRAICZNY:}\smallskip\\
+    {\color{emp}$\rodz{A}=\parl A,\{F_i\;:\;i\in I\},\{R_j\;:\;j\in J\},\{C_k\;:\;k\in K\}\parr$}\smallskip\\
+    {\normalsize odpowiednio: zbiór (uniwersum), funkcje na $A$, relacje na $A$, stałe w $A$}
+\end{center}\medskip
+przykłady: $\parl \Po\N,\subseteq\parr, \;\parl \R, +, \cdot, 0, 1\leq\parr$\bigskip\\
+Język $L$ możemy interpretować w systemie $\rodz A$ o ile mają one tę samą sygnaturę.\bigskip
+\begin{center}\large
+    {\color{def}INTERPRETACJA} to funkcja ze zbioru wartości w uniwersum:\smallskip\\
+    $i\;:\;V\to \rodz A,$\smallskip\\
+    którą można rozszerzyć do funkcji ze zbioru termów w uniwersum:\smallskip\\
+    $\overline i \;:\;TM\to \rodz A$\\
+    $i\subseteq \overline i$
+\end{center}\bigskip
+Ponieważ sygnatury są takie same, to każdemu symbolowi funkcyjnemu możemy przypisać \\funkcję o dokładnie tej samej arności. \emph{Czyli jeśli dany symbol funkcyjny jest nakła-\\dany na termy, to odpowiadająca mu funkcja jest nakładana na wartości tych termów.}\bigskip
+\begin{center}\large
+    {\color{emp}W systemie $\rodz A$ formuła $\varphi$ jest spełniona przy interpretacji $i$:}\smallskip\\
+    $\rodz A \models \varphi[i]$
+\end{center}\bigskip
+Zaczynamy od formuł atomowych, czyli:\medskip\\
+\begin{tabular} { m{3cm} m{15cm} }
+    {\color{acc}$\rodz A\models (t=s)[i]$} & wtedy i tylko wtedy, gdy mają tę samą interpretację (czyli $\overline i(t)=\overline i(s)$)\\
+    {\color{acc}$\rodz A\models r_j(t_1,...,t_k)[i]$} & wtedy i tylko wtedy, gdy odpowiedająca temu predykatowi relacja zachodzi na wartościach termów (czyli $R_j(\overline i (t_1), ..., \overline i (t_k))$)\\
+    {\color{acc}$\rodz A \models (\neg\;\varphi)[i]$} & \makecell[tl]{wtedy i tylko wtedy, gdy nieprawda, że $\rodz A \models \varphi[i]$, i tak ze wszy-\\stkimi spójnikami logicznymi}\\
+    {\color{acc}$\rodz A\models (\forall\;x_m)\;\varphi[i]$} & \makecell[tl]{wtedy i tylko wtedy, gdy dla każdego $a\in \rodz A$ mamy $\rodz A\models \varphi[i({x_m\over a})]$ (spraw-\\dzamy dla konkretnego $a$ czy spełnia$\varphi$, a potem dla $x_m$ przypisujemy to \\$a$, natomiast inne wartości dostają podstawienie $({x_m\over a})$?)}
+\end{tabular}
+
+\section{AKSJOMATY}
+{\color{emp}Zbiór oraz należenie} uznajemy za {\color{emp}pojęcia pierwotne}, więc nie definiujemy ich tylko opi-\\sujemy ich własności.
+
+\subsection{AKSJOMAT EKSTENSJONALNOŚĆI}
+\begin{center}
+    zbiór jest jednoznacznie wyznaczony przez swoje elementy\smallskip\\
+    $(\forall\;x)\;(\forall\;y)\;(x=y\iff(\forall\;z)\;(z\in x\iff z\in y))$
+\end{center}\medskip
+Od tego momentu zakładamy, że \emph{\color{emp}istnieją wyłącznie zbiory}. Nie ma nie-zbiorów. Naszym \\celem jest budowanie uniwersum zbiorów i okazuje się, że w tym świecie można zinter-\\pretować całą matematykę.
+
+\subsection{AKSJOMAT ZBIORU PUSTEGO}
+\begin{center}
+    istnieje zbiór pusty \O\smallskip\\
+    $(\exists\;x)(\forall\;y)\neg\;y\in x$
+\end{center}
+Na podstawie {\color{def}aksjomatu ekstensjonalności} oraz {\color{def}aksjomaty zbioru pustego} można udowodnić, że istnieje {\color{emp}dokładnie jeden zbiór pusty}.\medskip\\
+\begin{tabular} {m{3cm} m{15 cm}}
+1. istnienie: & aksjomat zbioru pustego\\
+ \\
+\makecell[tl]{2. jedyność:} & \makecell[tl]{niech $P_1, P_2$ będą zbiorami pustymi. Wtedy dla dowolnego $z$ zachodzi \\$\neg\;z\in P_1\land \neg\;z\in P_2$, czyli $z\in P_1\iff z\in P_2$. Wobec tego, na mocy aksjomatu \\ekstensjonalności mamy $P_1=P_2$.}
+\end{tabular}\bigskip\\
+Przyjrzyjmy się następującemy systemowi algebraicznemu:
+$$\rodz A_1=\parl\N\cap[10, +\infty),<\parr$$
+W systemie spełnione są oba te aksjomaty:
+$$\rodz A_1\models A_1+A_2$$
+Ponieważ {\color{acc}nie mamy podanej interpretacji}, a nasze aksjomaty są spełnione, to spełnione \\są dla {\color{acc}dowolnej interpretacji}.
+
+\subsection{AKSJOMAT PARY}
+\begin{center}\large
+    dla dowolnych zbiorów $x, y$ istnieje para $\{x, y\}$\smallskip\\
+    $(\forall\;x,y)\;(\exists\;z)\;(\forall\;t)\;(t\in z\iff t=x\lor t=y)$
+\end{center}
+{\color{acc}Para nieuporządkowana jest jednoznacznie wyznaczona}. Aksjomat mówi tylko o istnieniu \\$z$, a można łatwo udowodnić, korzystając z aksjomatu ekstencjonalności, że takie $z$ is-\\tnieje tylko jedno.\medskip\\
+Niech $P_1, P_2$ będa parami nieuporządkowanymi $x, y$. W takim razie jesli $t\in P_1$, to $t=x\lor t=y$. Tak samo $t\in P_2\iff t=x\lor t=y$. Czyli $P_1=P_2$ bo posiadają te same elementy. \bigskip\\
+\podz{emp}\bigskip\\
+{\color{def}SINGLETONEM} elementu $x$ nazywamy zbiór $\{x\}:=\{x, x\}$\bigskip
+\begin{center}\large
+    {\color{def}PARĄ UPORZĄDKOWANĄ} (wg. Kuratowskiego) \\elementów $x$ i $y$ nazyway zbiór:\smallskip\\
+    $\parl x,y\parr := \{\{x\}, \{x,y\}\}$
+\end{center}\medskip
+\podz{gr}\medskip\\
+Dla dowolnych elementów $a, b, c, d$ zachodzi:
+$$\parl a, b\parr = \parl c,d\parr \iff a=c\land b=d$$
+\dowod
+Rozważmy dwa przypadki:\medskip\\
+\indent 1. $a=b$\\
+$$\parl a,a\parr = \{\{a\}, \{a, a\}\} = \{\{a\}\}$$
+Czyli jeśli $x\in \{\{a\}\}$, to $x=\{a\}$. Z drugiej strony mamy 
+$$\parl c, d\parr=\{\{c\}, \{c,d\}\}$$
+A więc jeśli $x\in \{\{c\}, \{c,d\}\}$, to $x=\{c\}$ lub $x=\{c, d\}$. W takim razie mamy $\{a\}=\{c\}=\{c, d\}$, a więc z aksjomatu ekstensjonalności, $a=c=d$.\medskip\\
+\indent 2. $a\neq b$
+$$\parl a, b\parr = \{\{a\}, \{a, b\}\}$$
+Jeśli więc $x\in \parl a, b\parr$, to $x=\{a\}$ lub $x=\{a, b\}$. Z drugiej strony mamy
+$$\parl c, d\parr=\{\{c\}, \{c, d\}\}$$
+Jeśli $x\in \parl c,d\parr$, to $x=\{c\}$ lub $x=\{c, d\}$. W takim razie otrzymujemy $\{c\}=\{a\}$ i $\{c, d\}=\{a, b\}$. Z aksjomatu ekstensjonalności mamy $a=c$ oraz $d=b$.
+\kondow
+\subsection{AKSJOMAT SUMY}
+\begin{center}\large
+    Dla dowolnego zbioru istnieje jego suma\smallskip\\
+    $(\forall\;x)\;(\exists\;y)\;(\forall\;z)\;(z\in y\iff (\exists\;t)\;(t\in x\land z\in t))$
+\end{center}\bigskip
+Ponieważ wszystko w naszym świecie jest zbiorem, to \emph{\color{emp}każdy zbiór możemy postrzegać ja-\\ko rodzinę zbiorów} - jego elementy też są zbiorami. W takim razie suma tego zbioru to \\suma rodziny tego zbioru.\medskip\\
+{\color{def}Suma jest określona jednoznacznie} i oznaczamy ją $\bigcup x$.\bigskip\\
+\dowod
+Załóżmy nie wprost, ze istnieją dwie sumy zbioru $x$: $S_1$ i $S_2$. Wtedy
+$$(\forall\;z)(z\in S_1\iff (\exists\;t\in x) (z\in t))$$
+$$(\forall\;z)(z\in S_2\iff (\exists\;t\in x) (z\in t))$$
+Zauważamy, że
+$$z\in S_1\iff (\exists\;t\in x)z\in t\iff z\in S_2$$
+a więc $S_1$ i $S_2$ mają dokładnie te same elementy, więc z aksjomatu ekstencjonalności są \\tym samym zbiorem.
+\kondow
+Suma dwóch zbiorów:
+$$x\cup y := \bigcup\{x, y\}$$
+\dowod
+Ustalmy dowolne $z$. Wtedy mamy
+\begin{align*}
+    z\in \bigcup\{z, y\}&\overset{4}\iff (\exists\;t)\;(t\in \{x, y\}\land z\in t)\overset{3}\iff (\exists\;t)((t=x\lor t=y)\land z\in t)\iff\\
+    &\iff (\exists\;t)\;((t=x\land z\in t)\lor (t=y\land z\in t))\iff \\
+    &\iff (exists\;t)(t=x\land z\in t)\lor(\exists\;t)(t=y\land z\in t)\implies\\
+    &\implies (\exists\;t)(z\in x)\lor (\exists\;t)(z\in y\iff z\in x\lor z\in y)
+\end{align*}
+\kondow
+\subsection{AKSJOMAT ZBIORU PUSTEGO}
+\begin{center}\large
+    dla każdego zbioru istnieje jego zbiór potęgowy\smallskip\\
+    $(\forall\;x)(\exists\;y)(\forall\;z)z\in y\iff (\forall\;t\in z) t\in x$\smallskip\\
+    $(\forall\;x)(\exists\;y)(\forall\;z) \;z\in y\iff z\subseteq x$
+\end{center}\bigskip
+Zbiór potęgowy jest wyznaczony jednoznacznie i oznaczamy go $\Po x$\medskip\\
+\dowod
+Załóżmy, nie wprost, że istnieją dwa różne zbiory potęgowe $P_1$ i $P_2$ dla pewnego zbioru \\$x$. Wówczas
+$$(\forall\;z)\;z\in P_1\iff z\subseteq x$$
+$$(\forall\;z)\;z\in P_2\iff z\subseteq x$$
+Zauważamy, że
+$$z\in P_1\iff z\subseteq x\iff z\in P_2,$$
+czyli zbiory $P_1$ i $P_2$ mają dokładnie te same elementy, więc na mocy aksjomatu ekstencjo-\\nalności $P_1=P_2$
+\kondow
+\subsection{AKSJOMAT WYRÓŻNIANIA}
+To tak naprawdę schemat aksjomatu, czyli nieskończona rodzina aksjomatów
+\begin{center}\large
+    {\color{def}SIMPLIFIED VERSION:} niech $\varphi(t)$ będzie formułą języka teorii mnogości. Wtedy dla tej formuły mamy $\color{tit}A_{6\varphi}$ dla każdego zbioru $x$ istnieje zbiór, którego elementy spełniają własność $\varphi$\smallskip\\
+    $(\forall\;x)(\exists\;y)(\forall\;t)(t\in y\iff t\in x\land \varphi(t))$
+\end{center}\bigskip
+\begin{center}\large
+    {\color{def}FULL VERSION:} niech $\varphi(t, z_0, ..., z_n)$ będzie formułą jezyka teorii mnogści. Wtedy pozostałe zmienne wolne będa parametrami (zapis skrócony $z_0, ..., z_n:= \overline z$)\smallskip\\
+    Dla każdego układu parametrów i dla każdego $x$ istnieje $y$ taki, że dla każdego $t\in y$ $t$ należy do $x$ i $t$ spełnia formułę $\varphi$\smallskip\\
+    $(\forall\;z_0)...(\forall\;z_n)(\forall\;x)(\exists\;y)(\forall\;t)(t\in y\iff t\in x\land \varphi(t, z_0, ..., z_n))$
+\end{center}\bigskip
+Weźmy półprostą otwartą:
+$$(0, +\infty)=\{x\in\R\;:\;x>0\},$$
+druga półprosta to
+$$(1, +\infty)=\{x\in\R\;:\;x>1\}$$
+i tak dalej. Czyli ogólna definicja półprostej to:
+$$(a, +\infty)=\{x\in \R\;:\;x>a\}.$$
+Dla każdej z tych półprostych trzeba wziąc inną formułę, które wszystkie są zdefinio-\\wane za pomocą formuły
+$$\varphi(x, a)=(x>a),$$
+gdzie $a$ funkcjonuje jako parametr.
+\subsection{AKSJOMAT ZASTĘPOWANIA}
+Ostatni aksjomat konstrukcyjny, jest to schemat rodziny aksjomatów\smallskip\\
+\begin{center}\large
+    {\color{def}SIMPLIFIED VERSION:} niech $\varphi(x, y)$ będzie formułą języka teorii mnogości taką, że:\smallskip\\
+    $(\forall\;x)(\exists\;!\;y)\varphi(x, y).$\smallskip\\
+    Wówczas dla każdego zbioru $x$ istnieje zbiór $\{z\;:\;(\exists\;t\in x)\;\varphi(t, z)\}$\smallskip\\
+    $(\forall\;x)(\exists\;y)(\forall\;z)\;(z\in y\iff (\exists\;t\in x)\;\varphi(t, z))$
+\end{center}\medskip
+Czyli każdy zbiór można \emph{\color{acc}opisać za pomocą operacji}.\bigskip\\
+\begin{center}\large
+    {\color{def}FULL VERSION:} niech $\varphi(x, y, p_0, ..., p_n)$ będzie formułą języka teorii mnogości. \smallskip\\
+    $(\forall\;p_0), ..., (\forall\;p_n)\;((\forall\;x)\;(\exists\;!y)\;\varphi(x, y, \overline p)\implies (\forall\;x)(\exists\;y)(\forall\;z)\;(z\in y\iff (\exists\;t\in x)\;\varphi(t, z, \overline p)))$
+\end{center}
+
+\subsection{KONSTRUKCJE NA ZBIORACH SKOŃCZONYCH}
+Niech $x, y$ będą dowolnymi zbiorami. Wtedy definiujemy:\medskip\\
+    \indent $x\cap y=\{t\in x\;:\;t\in y\}$\smallskip\\
+    \indent $x\setminus y=\{t\in x\;:\; t\notin y\}$\smallskip\\
+    \indent $x\times y=\{z\in \Po{\Po{x\cup y}}\;:\;(\exists\; s\in x)(\exists\;t\in y)\;z=\parl s, t\parr\}$\medskip\\
+Formalnie stara definicja iloczynu kartezjańskiego nie działa w nowych warunkach, bo \\nie wiemy z czego wyróżnić tę parę uporządkowaną. Ponieważ $s, t\in x\cup y$, mamy
+$$\{s\}, \{s, t\}\subseteq x\cup y,$$
+a więc 
+$$\{\{s\}, \{s, t\}\}\subseteq \Po{x\cup y}.$$
+Czyli nasza para uporządkowana jest elementem zbioru potęgowego zbioru potęgowego sumy zbiorów.\medskip\\
+    \indent $\bigcap x=\{z\in \bigcup x\;:\;(\forall\;y\in x)\;z\in y\}$ i wówczas $\bigcap\emptyset=\emptyset$\bigskip\\
+\podz{gr}\bigskip\\
+{\color{def}RELACJA} - definiujemy $\rel r$ jako dowolny zbiór par uporządkowanych:
+$$\rel r :=(\exists\;x)(\exists\;y)\;r\subseteq x\times y$$
+{\color{def}FUNKCJA} - relcja, która nie ma dwóch par o tym samym poprzedniku i różnych następni-\\kach:
+$$\funk f := \rel f \land (\forall\;x)(\forall\;y)(\forall\;z)\;(\parl x,y\parr\in f\land \parl x, z\parr \in f)\implies y = x$$
+Dziedzinę i zbiór wartości możemy wówczas zdefiniować jako:
+$$\dom f = \{x\in \bigcup \bigcup f\;:\;(\exists\;y)\parl x,y\parr \in f\}$$
+$$\rng f = \{y\in \bigcup \bigcup f\;:\;(\exists\;x)\parl x,y\parr \in f\},$$
+ponieważ 
+$$\{\{x\}, \{x, y\}\}\in f\implies \{x\}, \{x, y\}\in \bigcup f\implies x,y\in\bigcup\bigcup f$$
+\emph{Dopóki działamy na zbiorach skończonych, wynikiem operacji zawsze będzie kolejny zbiór skończony - niemożliwe jest otrzymanie zbioru nieskończonego.}
+
+\subsection{AKSJOMAT NIESKOŃCZONOŚCI}
+\begin{center}\large
+    Istnieje {\color{emp}zbiór induktywny}:\smallskip\\
+    $(\exists\;x)\;(\emptyset\in x\land (\forall\;y\in x)\;(y\cup\{y\}\in x))$
+\end{center}
+Na początku do naszego zbioru $x$ dodajemy $\emptyset$. Potem, skoro $\emptyset$ należy do $x$, to należy też \\$\{\emptyset\}$. Ale skoro do $x$ należy $\emptyset\cup\{\emptyset\}$, to również $\{\emptyset\cup\{\emptyset\}\}$ jest jego elementem i tak dalej.\bigskip\\
+\podz{def}\bigskip
+\begin{center}\large
+    {\color{def}TW.} Istnieje zbiór induktywny najmniejszy względem zawierania, czyli taki, który zawiera się w każdym innym zbiorze induktywnym.
+\end{center}\bigskip
+\dowod
+Niech $x$ będzie zbiorem induktywnym, który istnieje z aksjomatu nieskończoności. Niech
+$$\omega=\bigcap\{y\in\Po x\;:\;y \texttt{ jest zbiorem induktywnym}\}$$
+Chcę pokazać, że $\omega$ jest zbiorem induktywnym, czyli $\emptyset\in\omega$.
+$$\emptyset\in\omega\iff\emptyset\in y \texttt{ dla każdego zbioru induktywnego }y\subseteq x$$
+Ponieważ każdy zbiór induktywny zawiera $\emptyset$, także $\omega$ zawiera $\emptyset$.\medskip\\
+Pozostaje pokazać, że dla dowolnego $t\in\omega$ mamy
+$$t\cup\{t\}\in \omega$$
+Dla każdego zbioru induktywnego $y\subseteq x$ mamy $t\in y$. ale ponieważ $y$ jest zbiorem induktyw-\\nym, mamy 
+$$t\cup\{t\}\in y.$$
+Z definicji przekroju zbioru $x$ mamy
+$$t\cup\{t\}\in \bigcap \{y\in \Po x\;:\;\texttt{ y jest zbiorem induktywnym}\}=\omega$$
+Czyli istnieje zbiór induktywny $\omega$ będący przekrojem wszystkich innych zbiorów induktyw-\\nych. Pokażemy teraz, że jest to zbiór najmniejszy.\medskip\\
+Niech $z$ będzie dowolnym zbiorem induktywnym. Wtedy $z\cap x$ jest zbiorem induktywnym i \\$z\cap x\subseteq x$. Czyli $z$ jest jednym z elementów rodziny, której przekrój daje $\omega$:
+$$z\cap x\supseteq \{y\in\Po x\;:\; Y\texttt{ zb. ind.}\}=\omega$$
+\kondow
+\podz{gr}\bigskip\\
+Każdy element $\emptyset,\;\{\emptyset\},\;\{\emptyset,\{\emptyset\}\}...$ możemy utoższamić z {\color{acc}kolejnymi liczbami naturalnymi}. W ta-\\kim razie ten najmniejszy zbiór induktywny będzie utożsamiany ze zbiorem liczb natural-\\nych. Konsekwencją tego jest \emph{\color{emp}zasada indukcji matematycznej}.\smallskip\\
+Niech $\varphi(x)$ będzie formułą ozakresiie zmiennej $x\in\N$ takiej, że zachodzi $\varphi(0)$ oraz
+$$(\forall\;n\in\N)\;\varphi(n)\implies\varphi(n+1).$$
+Wówczas 
+$$(\forall\;z\in\N)\;\varphi(n)$$
+\dowod
+Niech 
+$$A=\{n\in\N\;:\;\varphi(n)\}.$$
+Wtedy $A\in\N$ oraz $A$ jest induktywny. Kolejne zbiory należące do zbioru induktywnego utoż-\\samialiśmy z $n\in\N$, więc skoro $\varphi(n)$ należy do tego zbioru induktywnego, to również $\varphi(n+1)$ należy do $A$. Skoro $A$ jest zbiorem induktywnym, to $\N\subseteq A$, więc $A=\N$.
+\kondow
+
+\end{document}
