@@ -1,0 +1,161 @@
+\section{30.10.23 : Kompleksy łańcuchowe i (ko)homologie}
+
+\subsection{Kompleks łańcuchowy i sympleksy}
+
+\begin{definition}[kompleks łańcuchowy]
+  \buff{Kompleks (ko)łańcuchowy} w kategorii abelowej $\mathbf{A}$ to ciąg obiektów i morfizmów
+  \begin{center}\begin{tikzcd}
+    ...\arrow[r] & A^{n-1}\arrow[r, "d^{n-1}"] & A^{n} \arrow[r, "d^n"] & A^{n+1} \arrow[r] & ...
+  \end{tikzcd}\end{center}
+  taki, że dla każdego $n$ $d^n\circ d^{n-1}=0$
+\end{definition}
+
+\begin{example}[kompleksów łańcuchowych]
+  \item Niech $X$ będzie \acc{kompleksem symplicjalnym}. Z takim sympleksem można teraz stowarzyszyć kompleks symplicjalny z obiektami
+    $$C_nX=\bigoplus_{\sigma-\text{n-sympleks}}\Z$$
+    i wtedy $\partial:C_nX\to C_{n-1}X$ jest odwzorowaniem brzegu między tymi obiektami takim, że
+    $$\partial[\sigma^n]=\sum_{\tau^{n-1}<\sigma^n}\pm[\tau^{n-1}]$$
+    gdzie $\sigma^n$ to generator składniku $\Z$ odpowiadający sympleksowi $\sigma^n$. Jeśli mamy sympleks $\sigma^n=(v_0,...,v_n)$ to przez ścianę $\tau^{n-1}$ rozumiemy
+    $$\tau^{n-1}=(v_0,...,\hat{v_i},...,v_n)$$
+    gdzie przez $\hat{v_i}$ rozumiemy opuszczenie tej współrzędnej.
+
+  \item Niech $X$ będzie przestrzenią topologiczną, wówczas 
+    $$S_nX=\bigoplus_{\sigma:\Delta^n\to X}\Z$$
+    gdzie $\sigma:\Delta^n\to X$ jest ciągłym odwzorowaniem z sympleksu w $X$. To się nazywa \acc{kompleks singularny}.
+
+    Odwzorowanie brzegu $\partial: S_nX\to S_{n-1}X$ na $\sigma:\Delta^n\to X$ przyjmuje wartość
+    $$\partial\sigma=\sum_{i=0}^n(-1)^i(\sigma\restriction_\text{i-ta ściana})$$
+    
+  \item \buff{Kompleks de Rhama}
+
+    Niech $M$ będzie gładką rozmaitością, $A^n=\Omega^nM$ będzie zbiorem gładkich form na niej. Wówczas $d:\Omega^nM\to\Omega^{n+1}M$ jest pochodną zewnętrzną.
+
+    W szczególności, jeśli $M=T^2$, to $H^1=\R^2$, $H^2=\R$ oraz $H^{>2}=0$.
+\end{example}
+
+\subsection{Homologie}
+
+Skoro $\partial_n\cdot\partial_{n+1}=0$, to $\img\partial_{n+1}\subseteq\ker\partial_n$, więc możemy zastanowić się nad
+  $$H_nX=\ker\partial_n/\img\partial_{n+1}.$$
+Tak zdefiniowane $H_nX$ nazywamy \buff{homologiami}.
+
+\begin{definition}[ogólna definicja (ko)homologii]
+  Niech $A^\cdot$ będzie kompleksem (ko)łańcuchowym i patrzymy na jego wycinek
+  \begin{center}\begin{tikzcd}
+    ...\arrow[r] & A^{n-1}\arrow[d, "a", purple] \arrow[r, "d^{n-1}"] & A^{n}\arrow[r, "d^n"] & A^{n+1} \arrow[r] & ...\\
+                 & K\arrow[ur, "\ker d^n" below right]
+  \end{tikzcd}\end{center}
+  Ponieważ $d^n\circ d^{n-1}=0$, to pojawia się nam od razu odwzorowanie do jądra $a:A^{n-1}\to K$. Chcemy więc nazwać
+  $$H^n(A^*)=\coker a$$
+  \buff{kohomologią}.
+\end{definition}
+
+  Ale to samo można zrobić dualnie, tzn.
+
+  \begin{center}\begin{tikzcd}
+    & & & C\arrow[d, "b", purple]\\
+    ...\arrow[r] & A^{n-1} \arrow[r, "d^{n-1}"] & A^{n}\arrow[r, "d^n"]\arrow[ur, "\coker d^{n-1}"] & A^{n+1} \arrow[r] & ...
+  \end{tikzcd}\end{center}
+  i zdefiniować $H^n(A^*)=\ker b$.
+
+  %$R$-moduł 
+  %$$H^n(A^\cdot)=\ker d^n/\img d^{n-1}$$
+  %nazywamy \buff{$n$-tą homologią} kompleksu $A^\cdot$.
+
+\begin{lemma}
+  W definicji jak wyżej $H^n(A^*):\coker a\cong\ker b$.
+\end{lemma}
+
+\begin{proof}
+  \begin{itemize}
+    \item Przy dodatkowym założeniu, że $d^{n-1}$ jest monomorfizmem, a $d^n$ jest epimorfizmem, dostajemy
+  $$d^n=\coker\ker d^n=\coker k$$
+  $$d^{n-1}=\ker c$$
+  Pokażemy, że $a=\ker ck$ oraz $b=\coker ck$, z czego od razu wynika teza:
+  \begin{center}\begin{tikzcd}
+    A^{n-1}\arrow[r, "a"] & K\arrow[r, "ck"]\arrow[d] & C \arrow[r, "b"] & A^n\\
+                          & \coker a\arrow[r, blue, "\star"] & \ker b\arrow[u]
+  \end{tikzcd}\end{center}
+  i strzałka $\color{blue}\star$ jest izomorfizmem na mocy lematu \ref{lemat 5.2}.
+
+  %{\large\color{red}POBAWIĆ SIĘ WYKRESEM za zdjęcia}
+
+  \begin{center}\begin{tikzcd}
+    & & & C\arrow[dr, "b"]\\ 
+    A^{n-1}\arrow[rr, "d^{n-1}"]\arrow[dr, "a"] & & A^n\arrow[ur, "c"]\arrow[rr] & & A^{n+1}\\ 
+                                                & K\arrow[ur, "k"]\\ 
+                                                & U\arrow[uul, "\exists!", green]\arrow[u, "\theta" below right, green]\arrow[uuurr, "0" below right, green, bend right=20, xshift=1mm]
+  \end{tikzcd}\end{center} 
+
+  Wiemy, że $k$ jest jądrem $d^n$, a z kolei $c=\coker d^{n-1}$. 
+
+  Z dodatkowego założenia wiemy, że
+  $$cka=cd^{n-1}=c\ker c=0$$
+  więc jeśli weźmiemy $\theta:U\to K$ takie, że również
+  $$k\theta=0$$
+  to musi się ono faktoryzować w jedyny sposób przez $\theta':U\to A^{n-1}$ tak, że
+  $$k\theta= d^{n-1}\theta'.$$
+  W takim razie, mamy
+  $$ka\theta'=d^{n-1}\theta'=k\theta$$
+  a ponieważ $k=\ker d^n$, to jest monomorfizmem i musi zachodzić $a\theta'=\theta$.
+  Ale $\theta$ działało jak jądro odwzorowania $ck$, czyli $a\theta'=\theta=\ker ck$.
+
+  \item Bez dodatkowych założeń
+
+    {\large\color{red}ZDJĘCIA}
+\end{itemize}
+
+\end{proof}
+
+\subsection{Pull-back i push-out}
+
+Po polsku czasem mówi się na to kwadrat kartezjański i kwadrat kokartezjański.
+
+\begin{definition}$ $\newline
+  \begin{itemize}
+    \item Pull-back to granica diagramu
+      \begin{center}\begin{tikzcd}
+        {\color{blue}X}\arrow[d, blue]\arrow[r, blue]\arrow[dr, dashed, blue]& B\arrow[d]\\
+        A\arrow[r] & C
+      \end{tikzcd}\end{center}
+    \item Push-out to z kolei kogranica diagramu
+      \begin{center}\begin{tikzcd}
+        C\arrow[d]\arrow[r]\arrow[dr, blue, dashed]& B\arrow[d, blue]\\
+        A\arrow[r, blue] & {\color{blue}Y}
+      \end{tikzcd}\end{center}
+  \end{itemize}
+\end{definition}
+
+\begin{fact}
+  W abelowej kategorii istnieją pull-backi i push-outy.
+\end{fact}
+
+\begin{proof}
+  \begin{center}\begin{tikzcd}
+    & B\arrow[d, "g"] & A\oplus B\arrow[r, "P_B"]\arrow[d, "P_A"] & B\arrow[d, "g", blue]\\ 
+    A\arrow[r, "f"] & C & A\arrow[r, "f", blue] & C
+  \end{tikzcd}\end{center}
+  Kandydatem na pull-back będzie jądro odwzorowania
+  $$E:=\ker(fP_A-gP_B).$$
+  Pokażemy, że $E$ jest granicą diagramu
+
+  \begin{center}\begin{tikzcd}
+    D \arrow[dddr, "\alpha" below left, blue, bend right=10] \arrow[dr, dashed] \arrow[drrr, "\beta", blue, bend left=10] \\ 
+    & E\arrow[dr, "e"] &  & B\arrow[dd, "g"]\\ 
+    & & A\oplus B\arrow[ur]\arrow[dl]\\ 
+    & A\arrow[rr, "f" below] & & C
+  \end{tikzcd}\end{center}
+  Załóżmy, że $D$ również jest stożkiem nad diagramem wyżej (spełnia warunek na granicę diagramu), tzn. $f\alpha=g\beta$. Chcemy pokazać, że $D$ jest jądrem $fP_A-gP_B$, wówczas strzałkę zaznaczoną przerywaną linią otrzymamy za darmo z uniwersalności jądra.
+
+  Popatrzmy na odwzorowanie $D\to A\oplus B$ zadane jako $i_A\alpha+i_B\beta$. Chcemy sprawdzić, czy zerem jest przekształcenie
+  \begin{align*}
+    (fP_A-gP_B)(i_A\alpha+i_B\beta)&=fP_A(i_A\alpha+i_B\beta)-gP_B(i_A\alpha+i_B\beta)=\\ 
+                                   &=fP_Ai_A\alpha+fP_Ai_B\beta-gP_Bi_A\alpha-gP_Bi_B\beta=\\ 
+                                   &=f\alpha+f0\beta - g0\alpha-g\beta=f\alpha-g\beta=0
+  \end{align*}
+  ale ponieważ $D$ jest stożkiem nad diagramem, to wiem, że $f\alpha=g\beta\implies f\alpha-g\beta=0$, czyli faktycznie mamy $0$. W takim razie $D$ jak i $E$ są jądrami $fP_A-gP_B$, czyli istnieje jedyne przekształcenie $D\to E$. Czyli $E$ jak i $D$ zachowują się jak granice. 
+
+  {\large\color{red}JESZCZE PUSH OUTY}
+
+\end{proof}
+

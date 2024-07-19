@@ -1,0 +1,321 @@
+\section{23.10.23 : Kategorie abelowe i addytywne, jądra}
+
+\subsection{Funktory sprzężone [adjoint functors]}
+
+
+\begin{definition}[funktory sprzężone]
+  Para funktorów $L:\mathbf{A}\to\mathbf{B}$ i $R:\mathbf{B}\to\mathbf{A}$ nazywamy \buff{parą sprzężoną} ($L$ jest lewo sprzężony do $R$, a $R$ jest prawo sprzężony do $L$), jeśli istnieją naturalne bijekcje (zarówno względem $\mathbf{A}$ jak i $\mathbf{B}$)
+  $$Hom_{\mathbf{B}}(L(A),B)\longleftrightarrow Hom_{\mathbf{A}}(A,R(B))$$
+
+  Funktory sprzężone oznaczamy $L\dashv R$
+\end{definition}
+
+\begin{example}
+  \item Jest sporo przykładów, gdy $R$ jest \acc{funktorem zapominającym}
+    \begin{itemize}
+      \item jeśli $R:\mathbf{Grp}\to\mathbf{Set}$, wtedy
+
+        \begin{center}\begin{tikzcd}[row sep=tiny]
+          Hom_{\mathbf{Grp}}(\star,B)\arrow[r, <->] & Hom_{\mathbf{Set}}(A,B)\\
+          \text{grupa}\arrow[u, start anchor={[yshift=-2mm, xshift=3mm]}, end anchor={[xshift=5mm, yshift=2mm]}, bend right=30] & &\text{grupa jako zbiór}\arrow[ul, start anchor={[xshift=1mm]west}, end anchor={[xshift=4mm, yshift=1mm]}, bend left=15]
+        \end{tikzcd}\end{center}
+
+        $\star$ będzie grupą wolną o zbiorze generatorów $A$, co oznaczamy $F_A$.
+      \item $R:\mathbf{Vect}_K\to\mathbf{Set}$ z bijekcjami zdefiniowanymi jako
+        $$Hom_{\mathbf{Vect}_K}(LA,V)\longleftrightarrow Hom_{\mathbf{Set}}(A,V)$$
+        gdzie $LA$ to przestrzeń liniowa o bazie równej zbiorowi $A$.
+    \end{itemize}
+  \item Dla $R$-modułów $A,B,X$ zachodzi
+        $$Hom_R(A\otimes X, B)\cong Hom_R(A,Hom_R(X,B))$$
+        dla $\phi\in Hom_R(A,Hom_R(X,B))$ mamy
+        $$(a\otimes x\mapsto (\phi(a))(x))\mapsto \phi$$
+        Dla ustalonego $X$ mamy funktory sprzężone z $R$-modułów w $R$-moduły: $L=-\otimes X$ oraz $R=Hom(X,-)$
+  \item Bardzo często włożenie kategorii w inną kategorię jest funktorem mającym funktor sprzężonym.
+    \begin{itemize}
+      \item Włożenie kategorii $\mathbf{Ab}\hookrightarrow \mathbf{Grp}$ posiada funktor sprzężony:
+      $$Hom_{\mathbf{Ab}}(\star, B)\longleftrightarrow Hom_{\mathbf{Grp}}(A, B)$$
+      komutant dowolnej grupy $A$ przechodzi przez każdy homomorfizm $\phi:A\to B$ na element neutralny, więc od razu indukwoane mamy przekształcenie $A^{op}\to B$, stąd $\star=A^{op}$.
+    \item Włożenie kategorii ciał w dziedziny wyrzuca część homomorfizmów. Mamy
+      $$Hom_{\mathbf{Ciala}}(\star,K)\longleftrightarrow Hom_{\mathbf{Dziedziny}}(R,K)$$
+      Jeśli mamy odwzorowanie z pierścienia $R$ w ciało $K$, to to odwzorowanie rozszerza się na odwzorowanie z ciała ułamków ciała $R$ w ciało $K$:
+  
+      \begin{center}\begin{tikzcd}
+        R\arrow[rr, "\phi"]\arrow[dr, hookrightarrow] & & K\ni\frac{\phi(p)}{\phi(q)}\\
+         & R_0\ni \frac{p}{q}\arrow[ur]
+      \end{tikzcd}\end{center}
+  
+      stąd $\star=R_o$
+    \item Włożenie zwartych przestrzeni Hausdorffa w przestrzenie topologiczne $\mathbf{Cpt}T_0\hookrightarrow \mathbf{Top}$ mamy
+      $$Hom_{\mathbf{Cpf}T_0}(\star, Y)\longleftrightarrow Hom_{\mathbf{Top}}(X,Y)$$
+      więc $\star=\beta X$ czyli uzwarceniem Cecha-Stone'a. To jest maksymalne możliwe uzwarcenie. 
+  
+      Bierzemy przestrzeń $X$ i patrzymy na wszystkie ciągłe odwzorowania z $X$ w $[0,1]$ i potem odwzorowujemy diagonalnie $X$ w ten produkt, a potem domykamy obraz tego diagonalnego odwzorowania i to jest maksymalne uzwarcenie.
+  \end{itemize}
+\end{example}
+
+\begin{fact}[jedyność funktora sprzężonego]
+  Funktor sprzężony, jeśli istnieje, to jest jedyny z dokładnością do izomorfizmu.
+\end{fact}
+
+\begin{proof}
+  Bardzo poglądowy, bo trzeba się dokładnie wgryźć w spojrzenie jak to działa na morfizmach.
+
+  $R(B)$ to jedyny element reprezentujący funktor
+  $$A^{op}\ni A\mapsto Hom_{\mathbf{B}}(LA,B)\in\mathbf{Set}$$
+    Z lematu Yonedy wiemy, że jeśli takie coś istnieje, to jest jedyne z dokładnością do izomorfizmu.
+\end{proof}
+
+\begin{fact}[funktory sprzężone zachowują granice (prostą/odwrotną)]\label{funktory sprzezone zachowuja granice}
+  Jeśli $L\dashv R$, to $R$ zachowuje granicę, a $L$ kogranicę ($L:\mathbf{C}\to\mathbf{D}$).
+\end{fact}
+
+\begin{proof}
+  Pokażemy tylko, że prawy sprzężony funktor zachowuje granicę. 
+
+  Wiemy, że $Hom_{\mathbf{C}}(A, RB)\cong Hom_{\mathbf{D}}(LA, B)$. Niech $F$ będzie diagramem w kategorii $\mathbf{D}$, a $G$ jego granicą. 
+
+  Ustalmy dowolny $A\in\ob\mathbf{C}$, który jest stożkiem granica diagramu $R\circ F$, tzn. komutuje diagram 
+  \begin{center}\begin{tikzcd}
+    & A\arrow[dl, "\Pi_i'" above left]\arrow[dr, "\Pi_j'"]\\ 
+    %& RG\arrow[dl, "R\Pi_i" above left] \arrow[dr, "R\Pi_j"]\\ 
+    RF(i) \arrow[rr, "RF(\alpha)" below] & & F(j) 
+  \end{tikzcd}\end{center}
+  W kategorii $\mathbf{D}$ obrazek wygląda następujące:
+  \begin{center}
+    \begin{tikzcd}
+      & LA \arrow[d, dashed, "\exists!\lambda"] \arrow[ddl, "L\Pi_i'" above left, bend right=20] \arrow[ddr, "L\Pi_j'" above right, bend left=20] \\ 
+      & G\arrow[dl, "\Pi_i" above left] \arrow[dr, "\Pi_j" above right]\\ 
+      F(i)\arrow[rr, "F(\alpha)"] & & F(j) 
+    \end{tikzcd}
+  \end{center}
+  Ze sprzężoności tych funktorów wiemy więc, że istnieje jedyna strzałka $A\to RG$ w kategorii $\mathbf{D}$. Czyli rysunek wygląda
+  \begin{center}
+    \begin{tikzcd}
+      & A \arrow[d, dashed, "\exists!\lambda;"] \arrow[ddl, "\Pi_i'" above left, bend right=20] \arrow[ddr, "\Pi_j'" above right, bend left=20] \\ 
+      & RG\arrow[dl, "R\Pi_i" above left] \arrow[dr, "R\Pi_j" above right]\\ 
+      RF(i)\arrow[rr, "RF(\alpha)"] & & RF(j) 
+    \end{tikzcd}
+  \end{center}
+  A więc $G$ po przeniesieniu przez $R$ nadal spełnia uniwersalną własność granicy, dla diagramu $R\circ F$.
+
+  %{\large\color{red}OBRAZEK}
+
+  %Musimy wziąć dowolny obiekt $A\in \mathbf{A}$ i sprawdzić, czy $\Pi_i':A\to (R\circ F)(I)$ sfaktoryzuje się w jedyny możliwy sposób na $R\circ R(\Pi_i)$. Musimy wziąć obiekt $LA\in\mathbf{B}$ i tutaj dostajemy jedyną strzałkę $LA\to X$, gdyż $X$ jest granicą. Ale sprzężoność $R$ z $L$ mówi, że mamy jedyność odpowiadania strzałek między elementami $\mathbf{A}$ a elementami $\mathbf{B}$.
+\end{proof}
+
+\subsection{Kategorie addytywne i abelowe}
+
+\begin{definition}[kategoria addytywna]
+  \buff{Kategoria addytywna} $\mathbf{A}$ to kategoria
+  \begin{itemize}
+    \item Dla każdej pary obiektów $A,B\in Ob\mathbf{A}$ na $Hom_{\mathbf{A}}(A, B)$ jest określona struktura grupy abelowej. Złożenia są biaddytywne:
+      \begin{center}\begin{tikzcd}
+        A\arrow[r, "g"] & B\arrow[r, "f", bend left=10]\arrow[r, "f'", bend right=10] & C\arrow[r, "h"] & D
+      \end{tikzcd}\end{center}
+      $$(f+f')\circ g=f\circ g+f'\circ g$$
+      $$h\circ(f+f')=h\circ f+h\circ f'$$
+    \item Istnieje \acc{obiekt zerowy} $0$ taki, że $Hom_{\mathbf{A}}(0, 0)=0$ jest grupą trywialną
+    \item Dla dowolnej pary obiektów $A, B\in Ob\mathbf{A}$ istnieje obiekt $C$ (zwykle oznaczany $A\oplus B$), który jest ich \acc{produktem} i \acc{koproduktem}, tzn.: istnieją morfizmy
+      \begin{center}\begin{tikzcd}
+        A\arrow[r, "i_A"] & C\arrow[l, "P_A"]\arrow[r, "P_B"] & B\arrow[l, "i_B"]
+      \end{tikzcd}\end{center}
+      takie, że $P_a\circ i_A=id_A$ i $P_A\circ i_B=0$ (analogicznie gdy przestawimy $A$ i $B$). Dodatkowo, $i_AP_A+i_BP_B=id_C$.
+  \end{itemize}
+\end{definition}
+
+Tłumacząc ostatni warunek, chcemy pokazać, że istnieje jedyna strałka $D\to C$:
+\begin{center}\begin{tikzcd}
+  D\arrow[dr, dashed]\arrow[drr, bend left=20, "f_b"]\arrow[ddr, "f_A", bend right=20] & &\\
+                                                       & C\arrow[r, "P_B"]\arrow[d, "P_A"] & B\\
+                                                       & A
+\end{tikzcd}\end{center}
+Zauważmy że $i_Af_A+i_Bf_B:D\to C$, wystarczy więc sprawdzić, czy taka definicja $D\to C$ sprawia, że diagram komutuje, tzn. złożyć ją z $P_A$ i $P_B$:
+%({\large\color{red}TUTAJ ZDJĘCIE Z MNÓSTWEM OBLICZEŃ})
+$$P_A(i_Af_A+i_Bf_B)=\underbrace{P_Ai_A}_{id_A}f_A+\underbrace{P_Ai_B}_{0}f_B=f_A$$
+$$P_B(i_Af_A+i_Bf_B)=\underbrace{P_Bi_A}_{0}f_A+\underbrace{P_Bi_B}_{id_B}f_B=f_B$$
+Jeśli istnieją dwa takie odwzorowania, to ich różnica $u$ zamykałaby diagram
+\begin{center}\begin{tikzcd}
+  D\arrow[drr, "0", bend left=20]\arrow[ddr, "0", bend right=20]\arrow[dr, "u"]\\
+  & C\arrow[r, "P_B"]\arrow[d, "f_A"] & B\\
+  & A
+\end{tikzcd}\end{center}Zauważmy, że 
+\begin{align*}
+  u&=id_C\circ 0=\\
+   &=i_AP_Au+i_BP_Bu=\\
+   &=i_A0+i_B0=0+0=0
+\end{align*}
+
+Analogicznie pokazuje się dla koproduktu.
+
+\begin{dygresja}[parę słów o zerach]
+  Dla dowolnego obiektu $A\in Ob\mathbf{A}$ mamy $Hom(0, A)=0$ i $Hom(0, A)=0$, bo dla $f:A\to 0$ jest $id_0\circ f=f$, czyli $f=0\circ f$, a więc
+  $$0f=(0+0)f=0f+0f\implies 0=0f\implies f=0$$
+\end{dygresja}
+
+\begin{example}
+\item $\mathbf{AB}$
+\item $R$-moduły
+\item Presnopy grup abelowych na jakiejś przestrzeni topologicznej (lub kategorii) 
+
+  $\mathbf{Pre-snop/AB}(X)$ i od razu zagubione w tym gąszczu snopy.
+\end{example}
+
+\begin{definition}[kategoria abelowa]
+  Kategoria addytywna jest \buff{abelowa}, jeśli każdy morfizm ma jądro i kojądro i naturalny morfizm z koobrazu w obraz jest izomorfizmem.
+\end{definition}
+
+Definicja wyżej często jest formułowana w inny, równoważny, sposób.
+
+\subsection{Monomorfizm, epimorfizm i jądra}
+
+\begin{definition}[jądro, kojądro i przyjaciele]
+  Kilka wyjaśnień:
+\begin{itemize}
+  \item Jądro $f$ to ekwalizator \begin{tikzcd}A\arrow[r, bend left=10, "f"]\arrow[r, bend right=10, "0" below] & B\end{tikzcd}. Inaczej, jest to \begin{tikzcd}K\arrow[r, "k"] &A\end{tikzcd} taki, że
+    \begin{enumerate}
+      \item \begin{tikzcd}K\arrow[r, "k"] & A\arrow[r, "f"] & B=0\end{tikzcd}
+      \item Zachodzi własność uniwersalna:
+        \begin{center}\begin{tikzcd}
+          \forall\;K'\arrow[r, "k'"]\arrow[d, "\exists!\;u" left]\arrow[rr, "0", bend left=30] & A\arrow[r, "f"] & B\\
+          K\arrow[ur, "k" below right]\arrow[urr, "0" below right, bend right=20]
+        \end{tikzcd}\end{center}
+    \end{enumerate}
+  \item Kojądro $f$ to koekwalizator \begin{tikzcd}A\arrow[r, bend left=10, "f"]\arrow[r, bend right=10, "0" below] & B\end{tikzcd} jak w następującym diagramie:
+    \begin{center}\begin{tikzcd}
+      A\arrow[r, "f"]\arrow[rr, "0", bend left=30]\arrow[drr, "0", bend right=20] & B\arrow[dr, "c'"]\arrow[r, "c"] & C\arrow[d, "\exists!"]\\
+    & & C'
+    \end{tikzcd}\end{center}
+  \item Niech $f:A\to B$, wówczas
+    \begin{itemize}
+      \item $\img f=\ker(B\to \coker\;f)$
+      \item $\coim\;f=\coker(\ker f\to A)$
+    \end{itemize}
+
+    \begin{center}\begin{tikzcd}
+      K\arrow[r, "k"] & A\arrow[r, "f"]\arrow[d] & B\arrow[r, "c"] & C\\
+                      & \coim\;f\arrow[r, dashed, green] & \img f\arrow[u]
+    \end{tikzcd}\end{center}
+    Naturalne odwzorowanie zaznaczone przerywaną linią ma być izomorfizmem jeśli działaby w kategorii abelowej.
+\end{itemize}
+\end{definition}
+
+\buff{Ekwalizator} strzałek \begin{tikzcd}A\arrow[r, bend left=10, "f"] \arrow[r, bend right=10, "g" below] & B\end{tikzcd} to obiekt $E$ oraz strzałka $e:E\to A$ taka, że $fe=ge$ oraz jeśli $U\xrightarrow{u}A$ również to spełnia, to istnieje jedyna strzałka $\phi:U\to E$ taka, że $u=e\phi$.
+
+
+\begin{definition}[mono-, epi-]
+  Morfizm $f:X\to Y$ jest
+  \begin{itemize}
+    \item \buff{monomorfizmem}, jeśli dla dowolnych dwóch odwzorowań $g_1,g_2:Z\to X$ zachodzi
+      $$f\circ g_1=f\circ g_2\implies g_1=g_2$$
+      W kategorii addytywnej można zamiast powyższego zażądać, żeby dla każdego $g:Z\to X$ $f\circ g=0\implies g=0$
+    \item \buff{epimorfizmem} nazywamy morfizm $f:A\to B$ taki, że mając $h_1,h_2:B\to W$ zachodzi
+      $$h_1\circ f=h_2\circ f\implies h_1=h_2$$
+      W kategorii addytywnej można zamiast tego powiedzieć, że mając $f:A\to B$ i $h:B\to W$ to
+      $$hf=0\implies h=0$$
+  \end{itemize}
+\end{definition}
+
+Można pokazać, że jeśli $f$ jest monomorfizmem, to $\ker f=0$, a jeśli $f$ jest epimorfizmem, to $\coker f=0$.
+
+\begin{lemma}
+  Jądra są monomorfizmami, a kojądra są epimorfizmami.
+\end{lemma}
+
+\begin{proof}
+  W przypadku jądra wystarczy zbadać diagram gdy mamy $kg=0$:
+  \begin{center}\begin{tikzcd}[row sep=large]
+    K\arrow[r, "k"] & A\arrow[r, "f"] & B\\
+    Z\arrow[u, "g" right]\arrow[u, "0" left, bend left=20, green]\arrow[ur, "0"]\arrow[urr, "0" below right]
+  \end{tikzcd}\end{center}
+  i zauważyć, że jedyność odwzorowania $Z\to K$ wymaga, aby $g=0$. 
+
+  Dla kojądra $A\xrightarrow{f} B\xrightarrow{c}C$ zakładamy $sc=0$, czyli rysujemy z uniwersalności kojądra:
+  \begin{center}\begin{tikzcd}[row sep=large]
+    A\arrow[r, "f"] & B\arrow[r, "c"]\arrow[rd, "sc=0" below left] & C\arrow[d, "\exists! s" right] \\ 
+                    & & D
+  \end{tikzcd}\end{center}
+  Ponieważ $s$ jest jedyne takie, to $s=0$ a więc $c$ jest epimorfizmem.
+\end{proof}
+
+\begin{uwaga}\label{uwaga 5.1}
+  Dla każdego morfizmu $f:A\to B$ w kategorii abelowej istnieje jedyny, z dokładnością do izomorfizmu, rozkład
+  
+  \begin{center}\begin{tikzcd}
+    K\arrow[r, "k"] & A\arrow[r, "i" above, "epi" below] & I \arrow[r, "j" above, "mono" below] & B \arrow[r, "c"] & C
+  \end{tikzcd}\end{center}
+  
+  w którym $k=\ker f$, $c=\coker f$, $i=\coker k$ oraz $j=\ker c$ i $f=j\cdot i$.
+\end{uwaga}
+
+\begin{proof}
+  Załóżmy, że istnieją dwa takie rozkłady:
+  
+  \begin{center}\begin{tikzcd}
+    K\arrow[dd, blue, dashed]\arrow[dr, "k"] & & I\arrow[dr, "j"]\arrow[dd, green, dashed] & & C\arrow[dd, red, dashed]\\
+                                             & A\arrow[ur, "i"] \arrow[dr, "i'"] & & B\arrow[dr, "c'"] \arrow[ur, "c"]\\
+    K' \arrow[ur, "k'"] & & I' \arrow[ur, "j'"] & & C'
+  \end{tikzcd}\end{center}
+  Strzałki {\color{blue}niebieska} i {\color{red}czerwona} są izomorfizmami wynikającymi z definicji kategorii abelowej. Strzałkę {\color{green}zieloną} dobbieramy w taki sposób, aby diagram
+  
+  \begin{center}\begin{tikzcd}
+    I\arrow[dr, "j"]\arrow[dd, green, dashed]\\
+    & B\\
+    I'\arrow[ur, "j'"]
+  \end{tikzcd}\end{center}
+  komutował. Chcemy jeszcze pokazać, że lewa strona również komutuje, czyli zajmujemy się diagramem
+
+  \begin{center}\begin{tikzcd}
+                                      & I\arrow[dd, dashed, green]\arrow[dr, "j"] & \\
+    A\arrow[ur, "i"]\arrow[dr, "i'"] &     & B \\
+                                      & I' \arrow[ur, "j'"]
+  \end{tikzcd}\end{center}
+
+\end{proof}
+
+\begin{lemma}\label{lemat 5.2}
+  W kategorii abelowej, jeśli $f$ jest epimorfizmem, to $f=\coker\ker f$, a jeśli $f$ jest monomofizmem, to $f=\ker\coker f$.
+\end{lemma}
+
+\begin{proof}
+  Zrobimy dowód dla epimorfizmu korzystając z rozkładu przedstawionego wyżej.
+
+  \begin{center}\begin{tikzcd}
+    K\arrow[r] & A\arrow[r] & I\arrow[r, "j"] & B\arrow[r, "0"] & 0
+  \end{tikzcd}\end{center}
+  
+  wiemy, że $j$ jest $\ker(B\to 0)$, czyli funkcji zerowej. Czyli musi być $j=id_B$, możemy więc przerysować
+
+  \begin{center}\begin{tikzcd}[row sep=small]
+    K\arrow[r]\arrow[d, phantom, sloped, "\cong"] & A\arrow[r]\arrow[d, phantom, sloped, "\cong"] & I\arrow[r, "j"]\arrow[d, phantom, sloped, "\cong"] & B\arrow[r, "0"]\arrow[d, sloped, phantom, "\cong"] & 0\\
+    K'\arrow[r] & A\arrow[r, "i"] & B\arrow[r, "id_B"] & B\arrow[r, "0"] & 0 
+  \end{tikzcd}\end{center}
+  ale przecież $i:A\to I$ było $i=\coker\ker f$, z drugiej strony ponieważ $A\to I\to B$ jest równe $f$, a w tym konkretnym przypadku jest to równe $A\to B\to B$ gdzie druga strzałka to $id_B$, to musi być $i:A\to I=f:A\to B$.
+\end{proof}
+
+\begin{uwaga}
+  W kategorii addytywnej warunek z \ref{uwaga 5.1} jest równoważny stwierdzeniu, że każdy morfizm ma jądro i kojądro oraz zachodzi lemat \ref{lemat 5.2}
+\end{uwaga}
+
+\begin{example}
+  \item Rozważmy kategorię abelowych grup topologicznych z warunkiem Hausdorffa. Tworzą one kategorię addytywną. Jądro $\ker f$ to algebraiczne jądro $f$ z dziedziczoną topologią, a $\coker f$ to tak naprawdę iloraz przez domknięcie obrazu $\overline{\img f}$.
+
+  \begin{center}\begin{tikzcd}
+    A\arrow[r, "f"] & B\arrow[r] & B/\overline{f[A]}
+  \end{tikzcd}\end{center}
+
+  Przez taką definicję $\coker$ mamy kategorię addytywną, która nie jest kategorią abelową.
+
+  Wystarczy sprawdzić
+  \begin{center}\begin{tikzcd}
+    0\arrow[r] & \R^\delta \arrow[r] & \R \arrow[r] & 0
+  \end{tikzcd}\end{center}
+  gdzie $\R^\delta$ ma topologię dyskretną, a $\R$ traktujemy jako zwykłą przestrzeń euklidesową. Wtedy nie mamy naturalnego izomorfizmu między $\ker \coker f$ a $\coker\ker f$, bo jedna z nich ma odziedziczoną topologię dyskretną, a druga nie.
+  %kojądrami {\large\color{red}JESZCZE RAZ PRZEMYŚLEĆ TEN PRZYKŁAD}
+
+\item Podstawowym przykładem kategorii abelowej jest kategoria $R$-modułów. Bardzo często kiedy pracujemy w kategorii abelowej zachowujemy się jakbyśmy byli w kategorii $R$-modułów na mocy twierdzenia Freyd-Mitchella:
+
+  \begin{dygresja}[twierdzenie Freyd-Mitchella]
+    Mała kategoria belowa ma wierne, pełne i dokładne zanurzenie w kategorię $R$-modułów dla pewnego $R$.
+  \end{dygresja}
+\end{example}
+

@@ -1,0 +1,56 @@
+\contentsline {section}{\numberline {1}04.10.23 : Podstawowe definicje}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Co to kategoria}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Kompleksy}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Funktory kowariantne i kontrawariantne}{6}{subsection.1.3}%
+\contentsline {section}{\numberline {2}09.10.23 : Równoważność kategorii}{11}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Presnop i snop}{11}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Funktory wierne, pełne}{12}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Naturalne przekształcenia funktorów}{13}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Równoważność kategorii}{16}{subsection.2.4}%
+\contentsline {section}{\numberline {3}16.10.23 : Funktory reprezentowalne i granice}{19}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Kategoria funktorów}{19}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Granice i kogranice}{21}{subsection.3.2}%
+\contentsline {section}{\numberline {4}23.10.23 : Kategorie abelowe i addytywne, jądra}{24}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Funktory sprzężone [adjoint functors]}{24}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Kategorie addytywne i abelowe}{27}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Monomorfizm, epimorfizm i jądra}{29}{subsection.4.3}%
+\contentsline {section}{\numberline {5}30.10.23 : Kompleksy łańcuchowe i (ko)homologie}{35}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Kompleks łańcuchowy i sympleksy}{35}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Homologie}{36}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Pull-back i push-out}{38}{subsection.5.3}%
+\contentsline {section}{\numberline {6}06.11.23 : Lemat o wężu i przyjaciele (kwadraty kartezjańskie)}{40}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Epimorfizm (i jądro) przenosi się przez pull-back}{40}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Czym są elementy obiektu?}{42}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Lemat o wężu \includegraphics [width=4mm]{wunsz.png}}{45}{subsection.6.3}%
+\contentsline {section}{\numberline {7}13.11.23 : Wężowe homologie i kohomologie}{48}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Ciąg dokładny kompleksów}{48}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Quasi-izomorfizmy i kategoria pochodna}{49}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Addytywne funktory dokładne}{51}{subsection.7.3}%
+\contentsline {section}{\numberline {8}20.11.23 : Rezolwenta}{56}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Definicje: rezolwenta projektywna i injektywna}{56}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Homotopijna równoważność homomorfizmów}{57}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Jednoznaczność rezolwenty projektywnej}{60}{subsection.8.3}%
+\contentsline {section}{\numberline {9}27.11.23 : Kategoria lokalna}{65}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Stożek odwzorowania}{71}{subsection.9.1}%
+\contentsline {section}{\numberline {10}04.12.23 : Kategoria pochodna jako kategoria zlokalizowana}{73}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Quasi-izomorfizmy tworzą klasę lokalizującą}{73}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Homotopie są tym samym w kat. pochodnej}{74}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Równoważność domków i qis}{77}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Pomiędzy nami, obiektami, a wszystkimi kompleksami}{78}{subsection.10.4}%
+\contentsline {section}{\numberline {11}11.12.23 : Rozszerzenia (extensions) Ext}{80}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Konstrukcja Yonedy}{80}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Trójkąty wyróżnione}{84}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Warianty kategorii pochodnej}{89}{subsection.11.3}%
+\contentsline {section}{\numberline {12}18.12.23 : Kompleksy podwójne, totalne i inne przymiotniki}{92}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Kompleks podwójny, rezolwenta Cartana-Eilenberga}{94}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Funktor pochodny}{99}{subsection.12.2}%
+\contentsline {section}{\numberline {13}08.01.24 : Funktor pochodny }{102}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Własności funktora pochodnego}{102}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}Obiekty $F$-acykliczne}{106}{subsection.13.2}%
+\contentsline {section}{\numberline {14}15.01.24 : Ciąg spektralny kompleksu podwójnego }{110}{section.14}%
+\contentsline {subsection}{\numberline {14.1}Składanie funktorów}{114}{subsection.14.1}%
+\contentsline {section}{\numberline {15}22.01.24 : Snopki ($R$-modułów)}{115}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Usnopienie (sheafification)}{115}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Własności snopów i kategorii snopów}{116}{subsection.15.2}%
+\contentsline {subsection}{\numberline {15.3}Flabby sheaf}{120}{subsection.15.3}%
+\contentsfinish 

@@ -1,0 +1,71 @@
+\textbf{\large\color{orange}Zadanie 6.} Niech $\mathds{K}$ będzie ciałem. Grassmannian $Gr_{\mathds{K}}(k,n)$ to przestrzeń $k$-wymiarowych podprzestrzeni $\mathds{K}^n$. Jeśli $\mathds{K}=\R,\C$ to jest to rozmaitość. Oblicz charakterystykę Eulera Grassmannianu $Gr_{\C}(k,n)$ korzystając z uogólnionej formuły Riemanna-Hurwitza i działania torusa $T^n$ na $\C^n$.
+
+\dotfill 
+
+Każdą $k$-wymiarową podprzestrzeń $\C^n$ możemy utożsamić z macierzą rzutu ortogonalnego na tę podprzestrzeń, która ma rząd $k$. Jeśli $V\in Gr_{\C}(k,n)$, to macierz z nią utożsamioną będziemy oznaczać $A_V$.
+
+\textbf{\color{green}Działanie torusa - definicja}
+
+Działanie torusa $T^n$ na $\C^n$ to mnożenie przez macierze diagonalne z wyrazami długości $1$ na przekątnej. Możemy to działanie przenieść na Grassmannian - torus będzie działał na podprzestrzeń $k$-wymiarową $V$ macierzą $T$:
+$$TA_VT^{-1}.$$
+
+\textbf{\color{green}Macierze ortogonalne są hermitowskie}
+
+Macierze rzutu zawsze spełniają $A^2=A$. Jeśli ten rzut jest ortogonalny, to dodatkowo wymagamy, aby $A^T=A$. Macierz rzutu ortogonalnego na zespolonej przestrzeni wektorowej jest jednocześnie macierzą hermitowską, tzn. dla wszystkich $x,y$ spełnia $\langle x, Ay\rangle = \langle Ax, y\rangle$:
+\begin{align*}
+  \langle Ax, y\rangle -\langle x, Ay\rangle &= \langle Ax, y\rangle -\langle x-Ax+Ax, Ay\rangle=\\ 
+  &=\langle Ax, y\rangle -\langle Ax, Ay\rangle + \langle Ax-x, Ay\rangle=\\ 
+  &=\langle Ax, (I-A)y\rangle + \langle (A-I)x, Ay\rangle=0,
+\end{align*}
+bo dla $A$ ortogonalnej $\langle Ax, (I-A)y\rangle =0$. Skoro wiemy już, że $A_V$ jest zawsze macierzą hermitowską, to wiemy, że $\overline{A_V^T}=A_V^T$.
+
+\textbf{\color{green}Działanie torusa jest dobrze określone}
+
+Wiemy też, że każda hermitowska macierz jest diagonalizowalna przez unitarne macierze z rzeczywistymi wartościami własnymi. Dzięki tej własności macierzy hermitowskich działanie torusa zdefiniowane wcześniej jest dobrze określone.
+
+Jeśli $V\in Gr_{\C}(k,n)$ i $A_V=PDP^{-1}$, to po działaniu na $A_V$ macierzą z torusa też jest diagonalizowalna przez macierze unitarne:
+$$TA_VT^{-1}=TPDP^{-1}T^{-1}=(TP)D(TP)^{-1},$$
+gdyż $T$ również jest macierzą unitarną, czyli $TP$ też takie jest.
+
+\textbf{\color{green}Orbity działania torusa i $\boldsymbol{\chi}$}
+
+Torus $T^n$ jest produktem $n$ okręgów $S^1$. Jeśli działamy okręgiem na przestrzeni, to punkty mają albo trywialny stabilizator, albo trywialną orbitę. Stąd, jeśli $T^n$ działa na $Gr_{\C}(k,n)$ to punkty mają albo trywialną orbitę, albo ich orbita to produkt okręgów.
+
+Jeśli więc określimy odwzorowanie $f:Gr_{\C}(k,n)\to Gr_{\C}(k,n)/T^n$, to wzór Riemanna-Hurwitza podpowiada, że tylko punkty stacjonarne liczą się do charakterystyki Eulera Grassmannianu:
+$$\chi(Gr_{\C}(k,n)=\int_{Gr_{\C}(k,n)/T^n}\chi(f^{-1}(X))d\chi(X)$$
+będzie zerować się na podzbiorach będących okręgami, bo $\chi(S^1)=0$. Natomiast punkty stałe, których orbity są punktami, będą liczyć się do charakterystyki Eulera po jeden raz. Stąd
+$$\chi( Gr_{\C}(k,n))=\#\{\text{punkty stałe działania }T^n\}$$
+
+\textbf{\color{green}Jak wyglądają punkty stałe?}
+
+Punkt stały działania torusa musi spełniać
+$$TA_VT^{-1}=A_V$$
+$$TA_V=A_VT$$
+dla wszystkich możliwych $T$.
+
+{\slshape Macierz $A_V$ jest punktem stałym działania torusa $\iff$ jest macierzą diagonalną o $k$ jedynkach i $(n-k)$ zerach na przekątnej.
+}
+
+$\implies$
+
+Załóżmy nie wprost, że istnieje macierz $A_V$ hermitowska, która nie jest diagonalna, ale jest punktem stałym działania $T^n$. Taka macierz musi posiadać niediagonalną macierz unitarną $P$ w diagonalizacji $A_V=PDP^{-1}$. 
+Jako, że $A_V$ jest punktem stałym, to dla każdego $T$ przychodzącego z torusa musi zachodzić
+$$TPDP^{-1}T^{-1}=PDP^{-1}$$
+$$D=(P^{-1}TP)D(P^{-1}TP)^{-1}.$$
+Ostatnia równość nie ma szans być spełniona dla wszystkich unitarnych, diagonalnych $T$ - sprzeczność.
+
+$\impliedby$
+
+Wszystkie macierze diagonalne $A_V$ mające $k$ jedynek i $(n-k)$ zer na przekątnej będą punktami stałymi działania torusa. Macierz 
+$$TA_V$$ 
+to "obcięcie" $T$ do $k$ wyrazów na przekątnej, a domnożenie do tego $T^{-1}$ zwróci $1$ w kolumnach, które zostały zachowane oryginalnie przez $A_V$. Stąd 
+$$TA_VT^{-1}=A_V.$$
+
+\textbf{\color{green}Ile jest punktów stałych?}
+
+Jeśli macierz rzutu ortogonalnego jest macierzą diagonalną, to musi ona mieć tylko $1$ i $0$ na przekątnej. Z jej macierzy możemy wywnioskować, że jeśli $i_1,...,i_k$ to numery kolumn, które mają niezerowy wyraz, to przestrzeń na którą jest wykonywany rzut wynosi 
+$$Lin\{e_{i_1},...,e_{i_k}\}.$$ 
+W takim razie, obrazem wektorów $e_{i_j}$ musi być on sam. Czyli na przekątnej będą $1$ tam, gdzie jest kolumna odpowiadająca wektorom z bazy przestrzeni i $0$ dla pozostałych wektorów.
+
+Stąd, albo przestrzeń z Grassmannianu jest punktem stałym działania, albo nie jest diagonalna. Macierzy z $k$ jedynkami i $(n-k)$ zerami na przekątnej jest $\binom{n}{k}$, czyli charakterystyka Eulera Grassmannianu wynosi
+$$\chi(Gr_{\C}(k,n))=\binom{n}{k}.$$

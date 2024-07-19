@@ -1,0 +1,226 @@
+\section{27.11.23 : Kategoria lokalna}
+
+\begin{definition}[klasa lokalizująca]
+  Klasa $S\subseteq Mor(\mathbf{B})$ jest nazywana \buff{lokalizującą}, jeśli spełnia następujące warunki:
+  \begin{enumerate}
+    \item identyczność dla dowolnego obiektu należy do $S$ i dla dowolnych $s,t\in S$ które można składać $s\circ t\in S$
+    \item poniższe diagramy dopełniają się
+      \begin{center}\begin{tikzcd}
+        \bullet \arrow[r, dashed, green, "\in S"] \arrow[d, dashed] & \bullet\arrow[d] & & \bullet\arrow[r, green, "\in S"] \arrow[d] & \bullet\arrow[d, dashed]\\ 
+        \bullet \arrow[r, green, "\in S" below] & \bullet & & \bullet\arrow[r, green, dashed, "\in S" below] & \bullet
+      \end{tikzcd}\end{center}
+      to znaczy, mając strzałki nieprzerywane znajdziemy strzałki przerywane tak, że odpowiednia strzałka jest z $S$ i powstałe diagramy komutują.
+    \item dla wszystkich \begin{tikzcd}X\arrow[r, yshift=1mm, "f"]\arrow[r, yshift=-1mm, "g" below] & Y\end{tikzcd} $(\exists\;s\in S)\;(sf=sg)\iff ((\exists\;t\in S)\;ft=gt)$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}[domki]
+  Niech $S$ będzie klasą lokalizującą w kategorii $\mathbf{B}$. Definiujemy nową kategorię $\color{green}\mathbf{B}[S^{-1}]$:
+  \begin{itemize}
+    \item $\ob \mathbf{B}[S^{-1}]=\ob \mathbf{B}$
+    \item morfizmy $A\to A'$ to klasy równoważności "domków", czyli diagramów
+      \begin{center}\begin{tikzcd}
+        & B\arrow[dl, "s\in S", orange] \arrow[dr, "f"]\\ 
+        A & & A' 
+      \end{tikzcd}\end{center}
+      które można rozumieć jako "ułamek" $fs^{-1}$.
+
+      Mówimy, że dwa domki $B$ i $B'$ przedstawiające morfizm $A\to A'$ w $\mathbf{B}[S^{-1}]$ są równoważne, jeśli istnieje $C$ wraz z morfizmami (w $\mathbf{B}$) $C\to B$ i $C\to B'$ takimi, że poniższy domek komutuje
+      \begin{center}\begin{tikzcd}
+        & & C\arrow[dl, "r"]\arrow[dr] \arrow[ddll, orange, "sr\in S" above left, bend right=30]\\ 
+        & B\arrow[dl, "s\in S" above left, orange]\arrow[drrr] & & B'\arrow[dr]\arrow[dlll, orange, "s'\in S" above left]\\ 
+        A & & & & A'
+      \end{tikzcd}\end{center}
+  \end{itemize}
+\end{definition}
+
+Jeśli mamy domki $A\leftarrow B\to A'$ i $A' \leftarrow B'\to A''$, to ich złożeniem jest nowy domek, którego istnienie wynika z 2 warunku klasy lokalizujące:
+\begin{center}\begin{tikzcd}
+        & & C\arrow[dl, "s''\in S" above left, orange]\arrow[dr] \\ 
+        & B\arrow[dl, "s\in S" above left, orange]\arrow[dr] & & B'\arrow[dr]\arrow[dl, orange, "s'\in S" above left]\\ 
+        A & & A' & & A''
+\end{tikzcd}\end{center}
+
+\begin{theorem}[kategoria domków jest ciekawa]$ $
+
+  \begin{enumerate}
+    \item $\mathbf{B}[S^{-1}]$ jest dobrze określona:
+      \begin{enumerate}
+        \item relacja na domkach jest relacją równoważności 
+        \item składanie domków nie zależy od wyboru reprezentantów
+        \item składanie domków jest łączne
+      \end{enumerate}
+    \item Funktor $\mathbf{B}\to \mathbf{B}[S^{-1}]$ ma własność uniwersalną, tzn. jeśli mamy funktor $\mathbf{B}\to \mathbf{D}$ taki, że elementy klasy lokalizującej $S$ są przez niego posyłane na izomorfizmy w $\mathbf{D}$, to wówczas taki funktor faktoryzuje się przez $\mathbf{B}[S^{-1}]$:
+      \begin{center}\begin{tikzcd}[column sep=large, row sep=small]
+        \mathbf{B}\arrow[r]\arrow[ddr] & \mathbf{B}[S^{-1}]\arrow[dd, dashed]\\ 
+        S\arrow[u, sloped, phantom, "\subseteq"]\arrow[ddr]\\
+                                                                                               & \mathbf{D}\\ 
+                                                                                               & \text{izo.}\arrow[u, sloped, phantom, "\subseteq"]
+      \end{tikzcd}\end{center}
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \begin{enumerate}
+    \item 
+      \begin{enumerate}
+        \item Jedyną ciekawą częścią tutaj jest sprawdzenie przechodności relacji równoważności domków. To znaczy, mając dane domki $A\leftarrow B\to A'\sim A\leftarrow B'\to A'$ oraz $A\leftarrow B'\to A'\sim A\leftarrow B''\to A'$ chcemy znaleźć dowód na równoważność domków $B$ i $B''$:
+          \begin{center}\begin{tikzcd}
+            & & D\arrow[dr, dashed]\arrow[dl, dashed]\\
+            & C \arrow[dl]\arrow[dr] & & C'\arrow[dl]\arrow[dr]\\
+            B\arrow[d, orange]\arrow[drrrr] & & B'\arrow[dll, orange]\arrow[drr] & & B''\arrow[d]\arrow[dllll, orange]\\
+            A & & & & A'
+          \end{tikzcd}\end{center}
+          Obiekt $D$ wraz ze strzałkami $D\to C$ oraz $D\to C''$ dostajemy z warunku 2. klasy lokalizującej:
+          \begin{center}\begin{tikzcd}[column sep=tiny, row sep=tiny]
+              &   & D\arrow[ddll, orange]\arrow[ddrr] \\
+              & {\color{white}d} \\ 
+            C\arrow[dr]\arrow[ddrr, orange, bend right=30] &   &   &    & C'\arrow[dl]\arrow[ddll, orange, bend left=30] \\ 
+                                                           & B \arrow[dr, orange] &   & B'\arrow[dl, orange]     \\ 
+              &   & A
+          \end{tikzcd}\end{center}
+
+      Z tak uzyskanym $D$ chcemy sprawdzić przemienność diagramu na fragmencie 
+      \begin{center}\begin{tikzcd}
+        & D\arrow[dl, orange]\arrow[dr] \\ 
+        B\arrow[d, orange]\arrow[drr] & & B''\arrow[d]\arrow[dll, orange]\\ 
+        A & & A' 
+      \end{tikzcd}\end{center}
+      narysujmy to w mniej konserwatywny sposób:
+      \begin{center}\begin{tikzcd}
+        & D'\arrow[d, "t", orange]\\ 
+        & D\arrow[dr]\arrow[dl, orange]\arrow[dd, bend right=40, "f" right]\arrow[dd, bend left=40, "g" left]\\ 
+        C\arrow[dr] & & C'\arrow[dl]\\ 
+                    & B\arrow[d, "s", orange]\\ 
+                    & A
+      \end{tikzcd}\end{center}
+      Na diagramie wyżej potencjalnym problemem jest uzyskanie $f=g$. Ale ponieważ mamy $sf=sg$ i $s\in S$, to z warunku klasy lokalizującej możemy znaleźć $t$ takie, że $ft=gt$. Wtedy wystarczy podmienić $D$ na $D'$ i wszystko nad $B$ się zgadza.
+    \item Niezależność wyniku złożenia domków od wyboru reprezentantów. Pokażemy tylko połowę tego dowodu, tę odpowiedzialną za niezależność wyboru lewego domku.
+
+      Mamy więc równoważne domki
+      \begin{center}\begin{tikzcd}
+        & C''\arrow[dl]\arrow[dr]\\ 
+        B\arrow[d, orange]\arrow[drr] & & B'\arrow[d]\arrow[dll, orange]\\ 
+        A & & A' 
+      \end{tikzcd}\end{center}
+      oraz kolejny domek \begin{tikzcd}A' & B''\arrow[l, orange]\arrow[r] & A''\end{tikzcd}. Składanie domków daje diagram
+      \begin{center}\begin{tikzcd}
+        C''\arrow[d]\arrow[dr] & C\arrow[dr]\arrow[dl, orange] & C'\arrow[d]\arrow[dl, orange] \\ 
+        B \arrow[d, orange]\arrow[drr]& B'\arrow[d]\arrow[dl, orange] & B''\arrow[dl, orange]\arrow[d] \\ 
+        A & A' & A''
+      \end{tikzcd}\end{center}
+      naszym celem będzie pokazanie, że domki $C$ i $C'$ przychodzące ze składania domków $B$ są równoważne.
+
+      Patrząc na kwadrat \begin{tikzcd} C''\arrow[r] & B & \arrow[l, orange] C\end{tikzcd} dostajemy \begin{tikzcd}C'' & D\arrow[r, orange] \arrow[r] & C\end{tikzcd} natomiast z kwadratu \begin{tikzcd} C'' \arrow[r] & B' & C'\arrow[l, orange]\end{tikzcd} dostajemy \begin{tikzcd}C'' & D'\arrow[l, orange]\arrow[r] & C'\end{tikzcd}. Mając już $D$ i $D'$ możemy wytworzyć $E$ z kwadratu \begin{tikzcd}D\arrow[r, orange] & C'' & D'\arrow[l, orange]\end{tikzcd}. Dostajemy diagram
+      \begin{center}\begin{tikzcd}
+        & E\arrow[dl, orange]\arrow[dr]\\
+        D\arrow[d, orange]\arrow[dr] & & D'\arrow[dl, orange]\arrow[d]\\
+        C''\arrow[d]\arrow[dr]\arrow[dd, bend right=20, orange] & C\arrow[dr]\arrow[dl, orange] & C'\arrow[d]\arrow[dl, orange] \\ 
+        B \arrow[d, orange]\arrow[drr]& B'\arrow[d]\arrow[dl, orange] & B''\arrow[dl, orange]\arrow[d] \\ 
+        A & A' & A''
+      \end{tikzcd}\end{center}
+      Do diagramu którego potrzebujemy trafią wierzchołki $E, C, C', A, A''$ więc chcemy, żeby taki diagram komutował i zawsze spełniał $E\to A\in S$. Zaczniemy od pokazania, że ścieżka $E\to D\to C\to B\to A$ jest w klasie $S$:
+      \begin{center}\begin{tikzcd}
+        E\arrow[r, orange] & D\arrow[r]\arrow[dr, orange] & C\arrow[r, orange] & B\arrow[r, orange] & A\\ 
+                           & & C''\arrow[ur]\arrow[urr, orange, bend left=10]
+      \end{tikzcd}\end{center}
+      obie ścieżki są sobie równe, więc jedyna podejrzana ścieżka $E\to A$ leży w $S$.
+
+      Sprawdzimy teraz komutowanie ostatecznego diagramu
+      \begin{center}\begin{tikzcd}
+        & E\arrow[dl, orange]\arrow[dr]\\ 
+        C\arrow[d, orange]\arrow[drr] & & C'\arrow[d]\arrow[dll, orange]\\ 
+        A & & A'' 
+      \end{tikzcd}\end{center}
+      poprzez przebudowanie ścieżki $E\to D\to C\to B\to A$ tak, aby dostać $E\to D'\to C'\to B'\to A$ (i analogicznie ze ścieżkami $E\to A''$, ale to pominiemy)
+      \begin{center}\begin{tikzcd}
+        E\arrow[r, orange]\arrow[dr] & D\arrow[r] & C \arrow[r, orange] & B \arrow[r, orange] & A \\ 
+                                     & D' \arrow[ur, orange] \arrow[r] & C'\arrow[r, orange] & B'\arrow[ur, orange]
+      \end{tikzcd}\end{center}
+    \end{enumerate}
+  \item Funktor $\mathbf{B}\to \mathbf{B}[S^{-1}]$ jest identycznością na obiektach, natomiast morfizm $f:X\to Y$ zamieniamy na domek
+  \begin{center}\begin{tikzcd}
+    & X\arrow[dl, orange, "id_X\in S" above left]\arrow[dr, "f"]\\ 
+    X & & Y
+  \end{tikzcd}\end{center}
+  Zauważmy tutaj, że elementy $s\in S$ przechodzą przez ten funktor na izomorfizmy, gdyż mamy następujące domki
+  \begin{center}\begin{tikzcd}
+    & X\arrow[dl, "id\in S" above left, orange] \arrow[dr, "s" above right] & & & X\arrow[dl, "s\in S" above left, orange]\arrow[dr, "id" above right] \\ 
+    X & & Y & Y & & X
+  \end{tikzcd}\end{center}
+  które składają się do 
+  \begin{center}\begin{tikzcd}
+    & X\arrow[dl, "id" above left, orange]\arrow[dr, "id" above right] & & & & X\arrow[dr, "id" above right]\arrow[dl, orange, "id" above left]\\ 
+    X\arrow[d, "id" left, orange]\arrow[dr, "s" above right] & & X\arrow[dl, "s" above left, orange]\arrow[d, "id"  right] & & X\arrow[d, orange, "s" left]\arrow[dr, "id" above right] & & X\arrow[dl, "id" above left, orange]\arrow[d, "s" right] \\ 
+    X & Y & X & & Y & X & Y
+  \end{tikzcd}\end{center}
+  gdzie domek po prawej jest równoważny identyczności na $Y$.
+
+  Tak zdefiniowany funktor $\mathbf{B}\to \mathbf{B}[S^{-1}]$ spełnia własność uniwersalną, tzn istnieje funktor $\overline{T}$ taki, że komutuje diagram
+  \begin{center}\begin{tikzcd}
+    \mathbf{B}\arrow[r]\arrow[dr, "T" below left] & \mathbf{B}[S^{-1}]\arrow[d, dashed, "\overline{T}" right]\\ 
+                                  & \mathbf{D}
+  \end{tikzcd}\end{center}
+  Funktor $\overline{T}$ definiujemy na morfizmach, czyli domkach jako
+  $$
+  \overline{T}(A \xleftarrow{s}B\xrightarrow{f} A') = 
+  T(f)\circ T(s)^{-1}.
+  $$
+  Tak zdefiniowany funktor nie zależy od wyboru reprezentanta domku, tzn. wybierzmy
+  \begin{center}\begin{tikzcd}
+    & C\arrow[dl, "t" above left, orange]\arrow[dr, "g"]\\ 
+    B\arrow[d, "s" left, orange]\arrow[drr, "f" near start] & & B'\arrow[dll, orange, "s'" near start]\arrow[d, "f'" right]\\ 
+    A & & A'
+  \end{tikzcd}\end{center}
+  \begin{align*}
+    \overline{T}(\uparrow)&=T(f)T(s)^{-1}=T(ft)T(st)^{-1}=\\ 
+                          &=T(f)T(t)T(st)^{-1}=T(f')T(g)T(st)^{-1}=\\ 
+                          &=T(f')T(g)T(s'g)^{-1}=T(f')T(g)T(g)^{-1}T(s')^{-1}\\ 
+                          &=T(f')T(s')^{-1}
+  \end{align*}
+  \end{enumerate}
+\end{proof}
+
+
+\begin{theorem}$ $
+
+  \begin{enumerate}
+    \item Qis tworzą klasę lokalizującą w kategorii homotopijnej $K(\mathbf{A})$ ($\ob K(\mathbf{A})=\ob Kom(\mathbf{A})$, a morfizmy to klasy homotopii morfizmów w $Kom(\mathbf{A})$.)
+    \item $K(\mathbf{A})[qis^{-1}]=D(\mathbf{A})$.
+  \end{enumerate}
+\end{theorem}
+
+\subsection{Stożek odwzorowania}
+
+Topologicznie, stożek odwzorowania $f:X\to Y$ to suma spójna $C(f)=X\cup_fY$:
+\begin{center}\begin{tikzpicture}
+  \draw[dashed] (0,0) arc (0:180:1 and 0.3);
+  \draw(0,0) arc (360:180:1 and 0.3);
+
+  \draw(-1, 2)--(0,0);
+  \draw(-1, 2)--(-2, 0);
+
+  \node at (-1,0) {$X$};
+
+  \draw (-1, -2) circle (3 and 0.7);
+  \node at (0, -2) {$Y$};
+
+  \draw[->] (-1.7, -0.5) -- (-1.7, -1);
+  \draw[->] (-1, -0.5) -- (-1, -1);
+  \draw[->] (-0.3, -0.5) -- (-0.3, -1);
+  
+  \node at (0, -0.75) {$f$};
+\end{tikzpicture}\end{center}
+lub bardziej formalnie jest to przestrzeń ilorazowa $(I\times X\cup Y)/\sim$ dla relacji zdefiniowanej jako 
+$$(\forall\;x, x'\in X\cup Y)\;(0,x)\sim (0, x')$$
+$$(1, x)\sim (1,f(x))$$
+
+\begin{definition}[stożek algebraicznie]
+  Jeśli $f:A^*\to B^*$ jest morfizmem kompleksów, to definiujemy \buff{stożek} jako nowy kompleks
+  $$C(f)^i=A^{i+1}\oplus B^i$$
+  z różniczką
+  $$d_{C(f)}=\begin{bmatrix}-d_A & 0\\ f & d_B\end{bmatrix}.$$
+\end{definition}
+W praktyce oznacza to, że
+$$d_{C(f)}(a^{i+1}, b^i)=(-da^{i+1}, f(a^{i+1})+db^i).$$
+ 
